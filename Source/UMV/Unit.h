@@ -60,6 +60,7 @@ public:
     UFUNCTION(BlueprintCallable)
     UInventory* GetBackpack() { return Backpack; }
 
+
     UFUNCTION(BlueprintCallable)
     FName GetSocketName(EEquipmentSlots EquipmentSlots);
 
