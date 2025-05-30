@@ -69,8 +69,15 @@ public:
     UFUNCTION(BlueprintCallable)
     bool PutOnEquipment(UItemBase* ItemBase, EEquipmentSlots EquipmentSlots);
 
+private:
+    template <typename ItemType, ItemType* AUnit::* SlotMember, EEquipmentSlots SlotEnum>
+    bool PutOnEquipmentInternal(UItemBase* ItemBase);
+
+public:
     UFUNCTION(BlueprintCallable)
     bool TakeOffEquipment(UItemBase* ItemBase, EEquipmentSlots EquipmentSlots);
 
 private:
+    template <typename ItemType, ItemType* AUnit::* SlotMember>
+    bool TakeOffEquipmentInternal(UItemBase* ItemBase);
 };

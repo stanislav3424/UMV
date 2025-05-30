@@ -110,73 +110,59 @@ bool AUnit::PutOnEquipment(UItemBase* ItemBase, EEquipmentSlots EquipmentSlots)
 {
     if (!ItemBase)
         return false;
+
     switch (EquipmentSlots)
     {
-    case (EEquipmentSlots::Backpack):
-        if (Backpack)
-            return false;
-        else
-        {
-            Backpack = Cast<UInventory>(ItemBase);
-            if (Backpack)
-            {
-                Backpack->SpawnAndAttachSkeleton(this, EEquipmentSlots::Backpack);
-                return true;
-            }
-            else
-                return false;
-        }
-        break;
+    case EEquipmentSlots::Backpack:
+        return PutOnEquipmentInternal<UInventory, &AUnit::Backpack, EEquipmentSlots::Backpack>(ItemBase);
 
-    case (EEquipmentSlots::Weapon):
-        if (Weapon)
-            return false;
-        else
-        {
-            Weapon = Cast<UWeapon>(ItemBase);
-            if (Weapon)
-            {
-                Weapon->SpawnAndAttachSkeleton(this, EEquipmentSlots::Weapon);
-                return true;
-            }
-            else
-                return false;
-        }
-        break;
+    case EEquipmentSlots::Weapon:
+        return PutOnEquipmentInternal<UWeapon, &AUnit::Weapon, EEquipmentSlots::Weapon>(ItemBase);
 
     default:
-        break;
+        return false;
     }
-    return false;
+}
+
+template <typename ItemType, ItemType* AUnit::* SlotMember, EEquipmentSlots SlotEnum>
+bool AUnit::PutOnEquipmentInternal(UItemBase* ItemBase)
+{
+    if (this->*SlotMember != nullptr)
+        return false;
+
+    ItemType* Item = Cast<ItemType>(ItemBase);
+    if (!Item)
+        return false;
+
+    this->*SlotMember = Item;
+    Item->SpawnAndAttachSkeleton(this, SlotEnum);
+    return true;
 }
 
 bool AUnit::TakeOffEquipment(UItemBase* ItemBase, EEquipmentSlots EquipmentSlots)
 {
     switch (EquipmentSlots)
     {
-    case (EEquipmentSlots::Backpack):
-        if (Backpack)
-        {
-            ItemBase = Backpack;
-            Backpack->RemoveRepresentedActor();
-            Backpack = nullptr;
-            return true;
-        }
-        break;
+    case EEquipmentSlots::Backpack:
+        return TakeOffEquipmentInternal<UInventory, &AUnit::Backpack>(ItemBase);
 
-    case (EEquipmentSlots::Weapon):
-        if (Weapon)
-        {
-            ItemBase = Weapon;
-            Weapon->RemoveRepresentedActor();
-            Weapon = nullptr;
-            return true;
-        }
-        break;
+    case EEquipmentSlots::Weapon:
+        return TakeOffEquipmentInternal<UWeapon, &AUnit::Weapon>(ItemBase);
 
     default:
-        break;
+        return false;
     }
+}
 
+template <typename ItemType, ItemType* AUnit::* SlotMember>
+bool AUnit::TakeOffEquipmentInternal(UItemBase* ItemBase)
+{
+    if (auto* Item = this->*SlotMember)
+    {
+        ItemBase = Item;
+        Item->RemoveRepresentedActor();
+        this->*SlotMember = nullptr;
+        return true;
+    }
     return false;
 }
