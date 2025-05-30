@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "UMV",
+			"Path": "..\\Source\\UMV.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "UMVEditor",
+			"Path": "..\\Source\\UMVEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
