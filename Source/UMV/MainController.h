@@ -81,4 +81,7 @@ public:
 private: 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
     float SizeCell = 25.0f;
+
+public:
+    float GetSizeCell() { return SizeCell; }
 };

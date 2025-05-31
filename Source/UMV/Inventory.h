@@ -4,6 +4,9 @@
 #include "ItemBase.h"
 #include "Inventory.generated.h"
 
+class AMainGameState;
+class AMainController;
+
 USTRUCT(BlueprintType)
 struct FInventoryData : public FTableRowBase
 {
@@ -25,21 +28,39 @@ struct FItemPositionData
     FIntPoint Position;
 };
 
+USTRUCT(BlueprintType)
+struct FLine
+{
+    GENERATED_BODY()
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    float StartX;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    float StartY;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    float EndX;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    float EndY;
+
+};
+
 UCLASS(Blueprintable)
 class UMV_API UInventory : public UItemBase
 {
     GENERATED_BODY()
 
 public:
-    UFUNCTION(BlueprintCallable)
     virtual void Initialization() override;
 
     // Data
-private:
-    UPROPERTY()
+protected:
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
     TArray<UItemBase*> Inventory;
 
-protected:
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
     FInventoryData InventoryData;
 
     // Data UI
@@ -52,23 +73,35 @@ public:
 
     // Add / Remove Item
 public:
-    bool AddToInventory(UItemBase* AddItem, int32 IndexInventory = INDEX_NONE);
+    UFUNCTION(BlueprintCallable)
+    bool AddToInventory(UItemBase* AddItem, int32 IndexInventory = -1);
 
 private:
-    void AddToInventorySub(UItemBase* AddItem, int32 IndexInventory);
     bool TryAddToInventory(UItemBase* AddItem, int32 IndexInventory);
+    void AddToInventorySub(UItemBase* AddItem, int32 IndexInventory);
     int32 FaindTryAddToInventory(UItemBase* AddItem);
 
 public:
+    UFUNCTION(BlueprintCallable)
     bool RemoveItem(UItemBase* RemoveItem);
-    bool RemoveItem(int32 IndexInventory);
+
+    UFUNCTION(BlueprintCallable)
+    bool RemoveItemIndex(int32 IndexInventory);
 
 private:
     void SubRemoveItem(UItemBase* RemoveItem);
 
-    //
-
 public:
+    UFUNCTION(BlueprintCallable)
     UItemBase* GetItemIndex(int32 IndexInventory);
-    //
+
+private:
+    int32 PositionToInt(FIntPoint Position);
+
+    FIntPoint IntToPosition(int32 Index);
+
+    // DrawLines
+public:
+    UFUNCTION(BlueprintCallable)
+    TArray<FLine> GetDrawLines();
 };

@@ -18,4 +18,7 @@ protected:
 public:
     UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Data")
     UDataTable* ItemDataTable;
+
+    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Data")
+    UDataTable* InventoryDataTable;
 };

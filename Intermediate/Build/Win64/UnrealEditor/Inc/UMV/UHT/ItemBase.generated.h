@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define UMV_ItemBase_generated_h
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_16_GENERATED_BODY \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_17_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FItemData_Statics; \
 	UMV_API static class UScriptStruct* StaticStruct(); \
 	typedef FTableRowBase Super;
@@ -22,7 +22,13 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 template<> UMV_API UScriptStruct* StaticStruct<struct FItemData>();
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_34_INCLASS_NO_PURE_DECLS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_35_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execIsRotated); \
+	DECLARE_FUNCTION(execRotate); \
+	DECLARE_FUNCTION(execInitialization);
+
+
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_35_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUItemBase(); \
 	friend struct Z_Construct_UClass_UItemBase_Statics; \
@@ -31,7 +37,7 @@ public: \
 	DECLARE_SERIALIZER(UItemBase)
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_34_ENHANCED_CONSTRUCTORS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_35_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UItemBase(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -45,12 +51,13 @@ public: \
 	NO_API virtual ~UItemBase();
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_31_PROLOG
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_34_GENERATED_BODY \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_32_PROLOG
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_35_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_34_INCLASS_NO_PURE_DECLS \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_34_ENHANCED_CONSTRUCTORS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_35_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_35_INCLASS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_35_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

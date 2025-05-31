@@ -1,4 +1,5 @@
 #include "ItemBase.h"
+#include "MainController.h"
 #include "MainGameState.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "RepresentedActorBase.h"
@@ -7,6 +8,7 @@
 void UItemBase::Initialization()
 {
     MainGameState = Cast<AMainGameState>(GetWorld()->GetGameState());
+    MainController = Cast<AMainController>(GetWorld()->GetFirstPlayerController());
     if (!MainGameState)
         return;
     if (MainGameState->ItemDataTable)

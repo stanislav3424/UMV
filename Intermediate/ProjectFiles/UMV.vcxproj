@@ -253,7 +253,10 @@
     <None Include="..\..\Source\UMV.Target.cs"/>
     <None Include="..\..\Source\UMVEditor.Target.cs"/>
     <None Include="..\..\.clang-format"/>
+    <None Include="..\..\.gitattributes"/>
+    <None Include="..\..\.gitignore"/>
     <None Include="..\..\.vsconfig"/>
+    <None Include="..\..\README.md"/>
     <None Include="..\..\Config\DefaultEditor.ini"/>
     <None Include="..\..\Config\DefaultEngine.ini"/>
     <None Include="..\..\Config\DefaultGame.ini"/>
