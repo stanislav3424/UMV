@@ -54,6 +54,7 @@ public:
     int32 GetWidth() { return ItemData.Size.X; }
     int32 GetHeight() { return ItemData.Size.Y; }
     TSubclassOf<ARepresentedActorBase> GetRepresentedClass() { return ItemData.RepresentedActorClass; }
+    ARepresentedActorBase* GetRepresentedActor() { return RepresentedActor; }
 
 protected:
     UPROPERTY(EditAnywhere, BlueprintReadOnly)
