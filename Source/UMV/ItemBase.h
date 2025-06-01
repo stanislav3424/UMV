@@ -2,12 +2,15 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "Materials/MaterialInstanceDynamic.h"
+#include "RealtimeRenderingPipeline.h"
 #include "Kismet/GameplayStatics.h"
 #include "Unit.h"
 #include "ItemBase.generated.h"
 
 class AMainGameState;
 class AMainController;
+class AMainPlayerState;
 class ARepresentedActorBase;
 class UInventory;
 
@@ -74,5 +77,10 @@ public:
     void Rotate();
 
     UFUNCTION(BlueprintCallable)
-    bool IsRotated() { return bRotated; }
+    bool IsRotated() const { return bRotated; }
+
+    // MID
+public:
+    UFUNCTION(BlueprintCallable)
+    UMaterialInstanceDynamic* GetMID(FIntPoint Size);
 };

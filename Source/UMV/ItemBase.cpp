@@ -1,6 +1,7 @@
 #include "ItemBase.h"
 #include "MainController.h"
 #include "MainGameState.h"
+#include "MainPlayerState.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "RepresentedActorBase.h"
 #include "Inventory.h"
@@ -72,4 +73,17 @@ void UItemBase::Rotate()
     int32 a = ItemData.Size.Y;
     ItemData.Size.Y = ItemData.Size.X;
     ItemData.Size.X = a;
+}
+
+// MID
+
+UMaterialInstanceDynamic* UItemBase::GetMID(FIntPoint Size)
+{
+    AMainPlayerState* MainPlayerState;
+    MainPlayerState = Cast<AMainPlayerState>(MainController->PlayerState);
+    if (!MainPlayerState)
+        return nullptr;
+
+    UMaterialInstanceDynamic* MID = MainPlayerState->GetRealtimeRenderingPipeline()->GetMID(this, Size);
+    return MID;
 }

@@ -14,6 +14,7 @@ void EmptyLinkFunctionForGeneratedCodeItemBase() {}
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COREUOBJECT_API UClass* Z_Construct_UClass_UObject();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FIntPoint();
+ENGINE_API UClass* Z_Construct_UClass_UMaterialInstanceDynamic_NoRegister();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FDataTableRowHandle();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FTableRowBase();
 UMV_API UClass* Z_Construct_UClass_AMainController_NoRegister();
@@ -110,6 +111,52 @@ UScriptStruct* Z_Construct_UScriptStruct_FItemData()
 }
 // End ScriptStruct FItemData
 
+// Begin Class UItemBase Function GetMID
+struct Z_Construct_UFunction_UItemBase_GetMID_Statics
+{
+	struct ItemBase_eventGetMID_Parms
+	{
+		FIntPoint Size;
+		UMaterialInstanceDynamic* ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "ItemBase.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_Size;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UItemBase_GetMID_Statics::NewProp_Size = { "Size", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ItemBase_eventGetMID_Parms, Size), Z_Construct_UScriptStruct_FIntPoint, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UItemBase_GetMID_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ItemBase_eventGetMID_Parms, ReturnValue), Z_Construct_UClass_UMaterialInstanceDynamic_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UItemBase_GetMID_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UItemBase_GetMID_Statics::NewProp_Size,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UItemBase_GetMID_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UItemBase_GetMID_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UItemBase_GetMID_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UItemBase, nullptr, "GetMID", nullptr, nullptr, Z_Construct_UFunction_UItemBase_GetMID_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UItemBase_GetMID_Statics::PropPointers), sizeof(Z_Construct_UFunction_UItemBase_GetMID_Statics::ItemBase_eventGetMID_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04820401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UItemBase_GetMID_Statics::Function_MetaDataParams), Z_Construct_UFunction_UItemBase_GetMID_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UItemBase_GetMID_Statics::ItemBase_eventGetMID_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UItemBase_GetMID()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UItemBase_GetMID_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UItemBase::execGetMID)
+{
+	P_GET_STRUCT(FIntPoint,Z_Param_Size);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(UMaterialInstanceDynamic**)Z_Param__Result=P_THIS->GetMID(Z_Param_Size);
+	P_NATIVE_END;
+}
+// End Class UItemBase Function GetMID
+
 // Begin Class UItemBase Function Initialization
 struct Z_Construct_UFunction_UItemBase_Initialization_Statics
 {
@@ -165,7 +212,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UItemB
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UItemBase_IsRotated_Statics::NewProp_ReturnValue,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UItemBase_IsRotated_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UItemBase_IsRotated_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UItemBase, nullptr, "IsRotated", nullptr, nullptr, Z_Construct_UFunction_UItemBase_IsRotated_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UItemBase_IsRotated_Statics::PropPointers), sizeof(Z_Construct_UFunction_UItemBase_IsRotated_Statics::ItemBase_eventIsRotated_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UItemBase_IsRotated_Statics::Function_MetaDataParams), Z_Construct_UFunction_UItemBase_IsRotated_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UItemBase_IsRotated_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UItemBase, nullptr, "IsRotated", nullptr, nullptr, Z_Construct_UFunction_UItemBase_IsRotated_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UItemBase_IsRotated_Statics::PropPointers), sizeof(Z_Construct_UFunction_UItemBase_IsRotated_Statics::ItemBase_eventIsRotated_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UItemBase_IsRotated_Statics::Function_MetaDataParams), Z_Construct_UFunction_UItemBase_IsRotated_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_UItemBase_IsRotated_Statics::ItemBase_eventIsRotated_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_UItemBase_IsRotated()
 {
@@ -219,6 +266,7 @@ void UItemBase::StaticRegisterNativesUItemBase()
 {
 	UClass* Class = UItemBase::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "GetMID", &UItemBase::execGetMID },
 		{ "Initialization", &UItemBase::execInitialization },
 		{ "IsRotated", &UItemBase::execIsRotated },
 		{ "Rotate", &UItemBase::execRotate },
@@ -276,8 +324,9 @@ struct Z_Construct_UClass_UItemBase_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_UItemBase_GetMID, "GetMID" }, // 2661776818
 		{ &Z_Construct_UFunction_UItemBase_Initialization, "Initialization" }, // 2629807545
-		{ &Z_Construct_UFunction_UItemBase_IsRotated, "IsRotated" }, // 2431864589
+		{ &Z_Construct_UFunction_UItemBase_IsRotated, "IsRotated" }, // 3102517885
 		{ &Z_Construct_UFunction_UItemBase_Rotate, "Rotate" }, // 3508339206
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -349,10 +398,10 @@ struct Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source
 		{ FItemData::StaticStruct, Z_Construct_UScriptStruct_FItemData_Statics::NewStructOps, TEXT("ItemData"), &Z_Registration_Info_UScriptStruct_ItemData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FItemData), 1798542583U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UItemBase, UItemBase::StaticClass, TEXT("UItemBase"), &Z_Registration_Info_UClass_UItemBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItemBase), 687576270U) },
+		{ Z_Construct_UClass_UItemBase, UItemBase::StaticClass, TEXT("UItemBase"), &Z_Registration_Info_UClass_UItemBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItemBase), 3362126371U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_3206355968(TEXT("/Script/UMV"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_4289895376(TEXT("/Script/UMV"),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_Statics::ScriptStructInfo),
 	nullptr, 0);

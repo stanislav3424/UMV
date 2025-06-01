@@ -5,6 +5,7 @@
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Engine/TextureRenderTarget2D.h"
 #include "Containers/Map.h"
+#include "Math/UnrealMathUtility.h"
 #include "RealtimeRenderingPipeline.generated.h"
 
 class AMainController;
@@ -12,7 +13,7 @@ class UItemBase;
 class ARepresentedActorBase;
 class USceneCaptureComponent2D;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UMV_API ARealtimeRenderingPipeline : public AActor
 {
     GENERATED_BODY()
@@ -59,4 +60,5 @@ private:
     bool RenderTexture();
     int32 GetID(UItemBase* ItemBase);
     void CheckWaitingMIDs();
+    FVector2D NormalizeSize(FIntPoint Size);
 };

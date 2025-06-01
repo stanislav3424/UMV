@@ -70,6 +70,12 @@
     <ClCompile Include="..\..\Source\UMV\MainHUD.h">
       <Filter>Source\UMV</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\UMV\MainPlayerState.cpp">
+      <Filter>Source\UMV</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UMV\MainPlayerState.h">
+      <Filter>Source\UMV</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\UMV\RealtimeRenderingPipeline.cpp">
       <Filter>Source\UMV</Filter>
     </ClCompile>

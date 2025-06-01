@@ -8,6 +8,7 @@ ARealtimeRenderingPipeline::ARealtimeRenderingPipeline()
 {
     PrimaryActorTick.bCanEverTick = true;
     PrimaryActorTick.TickInterval = 0.1f;
+    InitializeCaptureComponent();
 }
 
 void ARealtimeRenderingPipeline::BeginPlay()
@@ -17,8 +18,7 @@ void ARealtimeRenderingPipeline::BeginPlay()
     MainController = Cast<AMainController>(GetWorld()->GetFirstPlayerController());
     if (MainController)
     {
-        SizeCell = MainController->GetSizeCell();
-        InitializeCaptureComponent();
+        SizeCell = MainController->GetSizeCell(); 
     }
     else
         Destroy();
@@ -45,15 +45,20 @@ void ARealtimeRenderingPipeline::InitializeCaptureComponent()
 
 UMaterialInstanceDynamic* ARealtimeRenderingPipeline::GetMID(UItemBase* ItemBase, FIntPoint Size)
 {
-    if (!ItemBase)
+    if (!ItemBase || !MaterialBase)
         return nullptr;
+
+    FVector2D Normalized = NormalizeSize(Size);
     int32 ID = GetID(ItemBase);
-    UTextureRenderTarget2D* Texture = *(MapTextures.Find(ID));
+
+    UTextureRenderTarget2D* Texture = MapTextures.FindRef(ID);
+
     UMaterialInstanceDynamic* MID = UMaterialInstanceDynamic::Create(MaterialBase, ItemBase);
     if (!MID)
         return nullptr;
-    MID->SetScalarParameterValue(FName("SizeX"), Size.X);
-    MID->SetScalarParameterValue(FName("SizeY"), Size.Y);
+
+    MID->SetScalarParameterValue(FName("SizeX"), Normalized.X);
+    MID->SetScalarParameterValue(FName("SizeY"), Normalized.Y);
 
     if (Texture)
         MID->SetTextureParameterValue(FName("Texture"), Texture);
@@ -134,4 +139,17 @@ void ARealtimeRenderingPipeline::CheckWaitingMIDs()
             WaitingMIDs.Remove(ID);
         }
     }
+}
+
+FVector2D ARealtimeRenderingPipeline::NormalizeSize(FIntPoint Size)
+{
+    if (Size.X < 1 || Size.Y < 1)
+        return FVector2D(1.f, 1.f);
+
+    int32 MinDimension = FMath::Min(Size.X, Size.Y);
+
+    float NormalizedX = static_cast<float>(Size.X) / MinDimension;
+    float NormalizedY = static_cast<float>(Size.Y) / MinDimension;
+
+    return FVector2D(NormalizedX, NormalizedY);
 }
