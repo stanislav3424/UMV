@@ -46,7 +46,7 @@ private:
     UPROPERTY()
     ARepresentedActorBase* RenderActor;
 
-    UPROPERTY(VisibleAnywhere)
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
     USceneCaptureComponent2D* SceneCapture;
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))

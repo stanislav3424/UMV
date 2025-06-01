@@ -108,7 +108,8 @@ struct Z_Construct_UClass_ARealtimeRenderingPipeline_Statics
 		{ "ModuleRelativePath", "RealtimeRenderingPipeline.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SceneCapture_MetaData[] = {
-		{ "Category", "RealtimeRenderingPipeline" },
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Components" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "RealtimeRenderingPipeline.h" },
 	};
@@ -141,7 +142,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARealtimeRende
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ARealtimeRenderingPipeline_Statics::NewProp_MapTextures_Key_KeyProp = { "MapTextures_Key", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_ARealtimeRenderingPipeline_Statics::NewProp_MapTextures = { "MapTextures", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ARealtimeRenderingPipeline, MapTextures), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MapTextures_MetaData), NewProp_MapTextures_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARealtimeRenderingPipeline_Statics::NewProp_RenderActor = { "RenderActor", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ARealtimeRenderingPipeline, RenderActor), Z_Construct_UClass_ARepresentedActorBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RenderActor_MetaData), NewProp_RenderActor_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARealtimeRenderingPipeline_Statics::NewProp_SceneCapture = { "SceneCapture", nullptr, (EPropertyFlags)0x00400000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ARealtimeRenderingPipeline, SceneCapture), Z_Construct_UClass_USceneCaptureComponent2D_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SceneCapture_MetaData), NewProp_SceneCapture_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARealtimeRenderingPipeline_Statics::NewProp_SceneCapture = { "SceneCapture", nullptr, (EPropertyFlags)0x00400000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ARealtimeRenderingPipeline, SceneCapture), Z_Construct_UClass_USceneCaptureComponent2D_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SceneCapture_MetaData), NewProp_SceneCapture_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ARealtimeRenderingPipeline_Statics::NewProp_MaterialBase = { "MaterialBase", nullptr, (EPropertyFlags)0x0040000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ARealtimeRenderingPipeline, MaterialBase), Z_Construct_UClass_UMaterial_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaterialBase_MetaData), NewProp_MaterialBase_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ARealtimeRenderingPipeline_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARealtimeRenderingPipeline_Statics::NewProp_MainController,
@@ -193,10 +194,10 @@ ARealtimeRenderingPipeline::~ARealtimeRenderingPipeline() {}
 struct Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RealtimeRenderingPipeline_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ARealtimeRenderingPipeline, ARealtimeRenderingPipeline::StaticClass, TEXT("ARealtimeRenderingPipeline"), &Z_Registration_Info_UClass_ARealtimeRenderingPipeline, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARealtimeRenderingPipeline), 1731079836U) },
+		{ Z_Construct_UClass_ARealtimeRenderingPipeline, ARealtimeRenderingPipeline::StaticClass, TEXT("ARealtimeRenderingPipeline"), &Z_Registration_Info_UClass_ARealtimeRenderingPipeline, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARealtimeRenderingPipeline), 3674427535U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RealtimeRenderingPipeline_h_1228221087(TEXT("/Script/UMV"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RealtimeRenderingPipeline_h_2731079494(TEXT("/Script/UMV"),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RealtimeRenderingPipeline_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RealtimeRenderingPipeline_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

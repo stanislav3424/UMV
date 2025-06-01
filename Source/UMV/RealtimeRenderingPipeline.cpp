@@ -30,10 +30,14 @@ void ARealtimeRenderingPipeline::Tick(float DeltaTime)
     while (!RenderQueue.IsEmpty() && RenderTexture())
         ;
     CheckWaitingMIDs();
+    int32 Size = MapTextures.Num();
+    bool IsEmpty = RenderQueue.IsEmpty();
 }
 
 void ARealtimeRenderingPipeline::InitializeCaptureComponent()
 {
+    RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+
     SceneCapture = CreateDefaultSubobject<USceneCaptureComponent2D>(TEXT("SceneCapture"));
     SceneCapture->SetupAttachment(RootComponent);
     SceneCapture->ProjectionType = ECameraProjectionMode::Orthographic;
@@ -88,7 +92,7 @@ bool ARealtimeRenderingPipeline::RenderTexture()
     RenderQueue.Dequeue(ItemBase);
     if (!ItemBase)
         return false;
-    
+
     if (MapTextures.Contains(GetID(ItemBase)))
         return false;
 
@@ -98,9 +102,14 @@ bool ARealtimeRenderingPipeline::RenderTexture()
     if (!Texture)
         return false;
 
-    FTransform Transform = GetActorTransform();
-    ItemBase->Spawn(Transform);
-    RenderActor = ItemBase->GetRepresentedActor();
+    FActorSpawnParameters SpawnParameters;
+    SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    FTransform SpawnTransform = GetActorTransform();
+    auto SpawnClass = ItemBase->GetRepresentedClass();
+    if (!SpawnClass)
+        return false;
+    RenderActor = GetWorld()->SpawnActor<ARepresentedActorBase>(SpawnClass, SpawnTransform, SpawnParameters);
+
     if (!RenderActor)
         return false;
 
