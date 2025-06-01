@@ -5,22 +5,28 @@
 void UInventory::Initialization()
 {
     Super::Initialization();
-
-    if (MainGameState->InventoryDataTable)
+    if (!MainGameState)
     {
-        FInventoryData* FoundRow =
-            MainGameState->InventoryDataTable->FindRow<FInventoryData>(DataTableRowHandle.RowName, TEXT(""));
-        if (FoundRow)
-        {
-            InventoryData = *FoundRow;
-        }
-        else
-        {
-            UE_LOG(LogTemp, Error, TEXT("UItemBase::Initialization: Row '%s' not found in ItemDataTable"),
-                   *DataTableRowHandle.RowName.ToString());
-            ConditionalBeginDestroy();
-            return;
-        }
+        return;
+    }
+
+    if (!MainGameState->InventoryDataTable)
+    {
+        return;
+    }
+
+    FInventoryData* FoundRow =
+        MainGameState->InventoryDataTable->FindRow<FInventoryData>(DataTableRowHandle.RowName, TEXT(""));
+    if (FoundRow)
+    {
+        InventoryData = *FoundRow;
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("UItemBase::Initialization: Row '%s' not found in ItemDataTable"),
+               *DataTableRowHandle.RowName.ToString());
+        ConditionalBeginDestroy();
+        return;
     }
 
     Inventory.SetNum(InventoryData.Size.X * InventoryData.Size.Y);
@@ -86,7 +92,7 @@ bool UInventory::TryAddToInventory(UItemBase* AddItem, int32 IndexInventory)
     if (StartPosition.X == INDEX_NONE || StartPosition.Y == INDEX_NONE)
         return false;
 
-    if (StartPosition.X + WidthItem >= InventoryWidth || StartPosition.Y + HeightItem >= InventoryHeight)
+    if (StartPosition.X + WidthItem > InventoryWidth || StartPosition.Y + HeightItem > InventoryHeight)
         return false;
 
     for (int32 Y = 0; Y < HeightItem; ++Y)
