@@ -9,12 +9,22 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+struct FDataTableRowHandle;
+struct FInventoryData;
+struct FItemData;
+struct FUnitData;
 #ifdef UMV_MainGameState_generated_h
 #error "MainGameState.generated.h already included, missing '#pragma once' in MainGameState.h"
 #endif
 #define UMV_MainGameState_generated_h
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_11_INCLASS_NO_PURE_DECLS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execGetInventoryData); \
+	DECLARE_FUNCTION(execGetItemData); \
+	DECLARE_FUNCTION(execGetUnitsData);
+
+
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMainGameState(); \
 	friend struct Z_Construct_UClass_AMainGameState_Statics; \
@@ -23,7 +33,7 @@ public: \
 	DECLARE_SERIALIZER(AMainGameState)
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_11_ENHANCED_CONSTRUCTORS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AMainGameState(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -37,12 +47,13 @@ public: \
 	NO_API virtual ~AMainGameState();
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_8_PROLOG
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_11_GENERATED_BODY \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_11_PROLOG
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_11_INCLASS_NO_PURE_DECLS \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_11_ENHANCED_CONSTRUCTORS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_INCLASS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

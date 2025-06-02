@@ -6,7 +6,24 @@
 #include "ItemBase.h"
 #include "Inventory.h"
 #include "Weapon.h"
+#include "MainGameState.h"
 #include "RepresentedActorBase.h"
+
+// Initialization
+
+void UUnitBase::Initialization(FDataTableRowHandle InitializationDataTableRowHandle,
+                               ARepresentedUnitBase* InitializationRepresentedUnitBase)
+{
+    DataTableRowHandle = InitializationDataTableRowHandle;
+    if (!GetWorld())
+        return;
+    MainGameState = Cast<AMainGameState>(GetWorld()->GetGameState());
+    if (MainGameState)
+        UnitData = MainGameState->GetUnitsData(DataTableRowHandle);
+    if (IsValid(InitializationRepresentedUnitBase))
+        RepresentedUnitBase = InitializationRepresentedUnitBase;
+    CheckEquipmentVisualization();
+}
 
 // Select
 
@@ -119,4 +136,23 @@ bool UUnitBase::TakeOffEquipmentInternal(UItemBase* ItemBase)
         return true;
     }
     return false;
+}
+
+// Visualization
+
+void UUnitBase::CheckEquipmentVisualization()
+{
+    if (!IsValid(RepresentedUnitBase))
+        return;
+    CheckEquipmentVisualizationInternal(Backpack, EEquipmentSlots::Backpack);
+    CheckEquipmentVisualizationInternal(Weapon, EEquipmentSlots::Weapon);
+}
+
+void UUnitBase::CheckEquipmentVisualizationInternal(UItemBase* Item, EEquipmentSlots EquipmentSlots)
+{
+    if (!IsValid(RepresentedUnitBase))
+        return;
+
+    if (Item)
+        Item->SpawnAndAttachSkeleton(this, EquipmentSlots);
 }

@@ -12,21 +12,7 @@ void UItemBase::Initialization()
     MainController = Cast<AMainController>(GetWorld()->GetFirstPlayerController());
     if (!MainGameState)
         return;
-    if (MainGameState->ItemDataTable)
-    {
-        FItemData* FoundRow = MainGameState->ItemDataTable->FindRow<FItemData>(DataTableRowHandle.RowName, TEXT(""));
-        if (FoundRow)
-        {
-            ItemData = *FoundRow;
-        }
-        else
-        {
-            UE_LOG(LogTemp, Error, TEXT("UItemBase::Initialization: Row '%s' not found in ItemDataTable"),
-                   *DataTableRowHandle.RowName.ToString());
-            ConditionalBeginDestroy();
-            return;
-        }
-    }
+    ItemData = MainGameState->GetItemData(DataTableRowHandle); 
 }
 
 void UItemBase::Spawn(FTransform& Transform)

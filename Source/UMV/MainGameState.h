@@ -3,6 +3,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameStateBase.h"
 #include "Engine/DataTable.h"
+#include "UnitBase.h"
+#include "ItemBase.h"
+#include "Inventory.h"
 #include "MainGameState.generated.h"
 
 UCLASS()
@@ -15,10 +18,23 @@ public:
 protected:
     virtual void BeginPlay() override;
 
-public:
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Data")
+private:
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
+    UDataTable* UnitsDataTable;
+
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
     UDataTable* ItemDataTable;
 
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Data")
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
     UDataTable* InventoryDataTable;
+
+public:
+    UFUNCTION(BlueprintCallable, Category = "Data")
+    const FUnitData GetUnitsData(const FDataTableRowHandle& DataTableRowHandle) const;
+
+    UFUNCTION(BlueprintCallable, Category = "Data")
+    const FItemData GetItemData(const FDataTableRowHandle& DataTableRowHandle) const;
+
+    UFUNCTION(BlueprintCallable, Category = "Data")
+    const FInventoryData GetInventoryData(const FDataTableRowHandle& DataTableRowHandle) const;
 };

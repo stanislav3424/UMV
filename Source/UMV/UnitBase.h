@@ -10,6 +10,7 @@ class UItemBase;
 class UInventory;
 class UWeapon;
 class ARepresentedActorBase;
+class AMainGameState;
 
 UENUM(BlueprintType)
 enum class EEquipmentSlots : uint8
@@ -46,9 +47,21 @@ private:
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
     FDataTableRowHandle DataTableRowHandle;
 
+public:
+    void Initialization(FDataTableRowHandle InitializationDataTableRowHandle,
+                        ARepresentedUnitBase* InitializationRepresentedUnitBase = nullptr);
+
+    // Data
+
+private:
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
+    AMainGameState* MainGameState;
+
+    FUnitData UnitData;
+
     // RepresentedUnitBase
 private:
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "RepresentedActorBase",
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "RepresentedUnitBase",
               meta = (AllowPrivateAccess = "true"))
     ARepresentedUnitBase* RepresentedUnitBase;
 
@@ -64,6 +77,8 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Selection")
     void SetSelect(bool bNewSelect);
 
+    bool IsSelect() const { return bSelect; }
+
     // Equipment
 private:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Equipment", meta = (AllowPrivateAccess = "true"))
@@ -73,7 +88,6 @@ private:
     UWeapon* Weapon;
 
 public:
-    UFUNCTION(BlueprintCallable)
     UInventory* GetBackpack() { return Backpack; }
 
     UFUNCTION(BlueprintCallable)
@@ -96,4 +110,9 @@ public:
 private:
     template <typename ItemType, ItemType* UUnitBase::* SlotMember>
     bool TakeOffEquipmentInternal(UItemBase* ItemBase);
+
+    // Visualization
+private:
+    void CheckEquipmentVisualization();
+    void CheckEquipmentVisualizationInternal(UItemBase* Item, EEquipmentSlots EquipmentSlots);
 };

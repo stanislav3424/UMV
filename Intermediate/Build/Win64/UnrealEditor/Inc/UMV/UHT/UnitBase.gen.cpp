@@ -15,6 +15,7 @@ COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COREUOBJECT_API UClass* Z_Construct_UClass_UObject();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FDataTableRowHandle();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FTableRowBase();
+UMV_API UClass* Z_Construct_UClass_AMainGameState_NoRegister();
 UMV_API UClass* Z_Construct_UClass_ARepresentedUnitBase_NoRegister();
 UMV_API UClass* Z_Construct_UClass_UInventory_NoRegister();
 UMV_API UClass* Z_Construct_UClass_UItemBase_NoRegister();
@@ -219,47 +220,6 @@ DEFINE_FUNCTION(UUnitBase::execEquipmentSlotAvailable)
 	P_NATIVE_END;
 }
 // End Class UUnitBase Function EquipmentSlotAvailable
-
-// Begin Class UUnitBase Function GetBackpack
-struct Z_Construct_UFunction_UUnitBase_GetBackpack_Statics
-{
-	struct UnitBase_eventGetBackpack_Parms
-	{
-		UInventory* ReturnValue;
-	};
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "UnitBase.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
-	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UUnitBase_GetBackpack_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UnitBase_eventGetBackpack_Parms, ReturnValue), Z_Construct_UClass_UInventory_NoRegister, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UUnitBase_GetBackpack_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUnitBase_GetBackpack_Statics::NewProp_ReturnValue,
-};
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UUnitBase_GetBackpack_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUnitBase_GetBackpack_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUnitBase, nullptr, "GetBackpack", nullptr, nullptr, Z_Construct_UFunction_UUnitBase_GetBackpack_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UUnitBase_GetBackpack_Statics::PropPointers), sizeof(Z_Construct_UFunction_UUnitBase_GetBackpack_Statics::UnitBase_eventGetBackpack_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUnitBase_GetBackpack_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUnitBase_GetBackpack_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_UUnitBase_GetBackpack_Statics::UnitBase_eventGetBackpack_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_UUnitBase_GetBackpack()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUnitBase_GetBackpack_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(UUnitBase::execGetBackpack)
-{
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	*(UInventory**)Z_Param__Result=P_THIS->GetBackpack();
-	P_NATIVE_END;
-}
-// End Class UUnitBase Function GetBackpack
 
 // Begin Class UUnitBase Function GetSocketName
 struct Z_Construct_UFunction_UUnitBase_GetSocketName_Statics
@@ -482,7 +442,6 @@ void UUnitBase::StaticRegisterNativesUUnitBase()
 	UClass* Class = UUnitBase::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
 		{ "EquipmentSlotAvailable", &UUnitBase::execEquipmentSlotAvailable },
-		{ "GetBackpack", &UUnitBase::execGetBackpack },
 		{ "GetSocketName", &UUnitBase::execGetSocketName },
 		{ "PutOnEquipment", &UUnitBase::execPutOnEquipment },
 		{ "SetSelect", &UUnitBase::execSetSelect },
@@ -507,9 +466,14 @@ struct Z_Construct_UClass_UUnitBase_Statics
 		{ "Category", "Initialization" },
 		{ "ModuleRelativePath", "UnitBase.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MainGameState_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Data" },
+		{ "ModuleRelativePath", "UnitBase.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RepresentedUnitBase_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
-		{ "Category", "RepresentedActorBase" },
+		{ "Category", "RepresentedUnitBase" },
 		{ "ModuleRelativePath", "UnitBase.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bSelect_MetaData[] = {
@@ -529,6 +493,7 @@ struct Z_Construct_UClass_UUnitBase_Statics
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FStructPropertyParams NewProp_DataTableRowHandle;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MainGameState;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_RepresentedUnitBase;
 	static void NewProp_bSelect_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bSelect;
@@ -538,7 +503,6 @@ struct Z_Construct_UClass_UUnitBase_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UUnitBase_EquipmentSlotAvailable, "EquipmentSlotAvailable" }, // 1222489107
-		{ &Z_Construct_UFunction_UUnitBase_GetBackpack, "GetBackpack" }, // 1271623741
 		{ &Z_Construct_UFunction_UUnitBase_GetSocketName, "GetSocketName" }, // 1858175197
 		{ &Z_Construct_UFunction_UUnitBase_PutOnEquipment, "PutOnEquipment" }, // 240430030
 		{ &Z_Construct_UFunction_UUnitBase_SetSelect, "SetSelect" }, // 3767131485
@@ -551,6 +515,7 @@ struct Z_Construct_UClass_UUnitBase_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UUnitBase_Statics::NewProp_DataTableRowHandle = { "DataTableRowHandle", nullptr, (EPropertyFlags)0x0040000000010015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UUnitBase, DataTableRowHandle), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DataTableRowHandle_MetaData), NewProp_DataTableRowHandle_MetaData) }; // 1360917958
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UUnitBase_Statics::NewProp_MainGameState = { "MainGameState", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UUnitBase, MainGameState), Z_Construct_UClass_AMainGameState_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MainGameState_MetaData), NewProp_MainGameState_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UUnitBase_Statics::NewProp_RepresentedUnitBase = { "RepresentedUnitBase", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UUnitBase, RepresentedUnitBase), Z_Construct_UClass_ARepresentedUnitBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RepresentedUnitBase_MetaData), NewProp_RepresentedUnitBase_MetaData) };
 void Z_Construct_UClass_UUnitBase_Statics::NewProp_bSelect_SetBit(void* Obj)
 {
@@ -561,6 +526,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UUnitBase_Stat
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UUnitBase_Statics::NewProp_Weapon = { "Weapon", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UUnitBase, Weapon), Z_Construct_UClass_UWeapon_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Weapon_MetaData), NewProp_Weapon_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UUnitBase_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUnitBase_Statics::NewProp_DataTableRowHandle,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUnitBase_Statics::NewProp_MainGameState,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUnitBase_Statics::NewProp_RepresentedUnitBase,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUnitBase_Statics::NewProp_bSelect,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUnitBase_Statics::NewProp_Backpack,
@@ -614,10 +580,10 @@ struct Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source
 		{ FUnitData::StaticStruct, Z_Construct_UScriptStruct_FUnitData_Statics::NewStructOps, TEXT("UnitData"), &Z_Registration_Info_UScriptStruct_UnitData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FUnitData), 1236317019U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UUnitBase, UUnitBase::StaticClass, TEXT("UUnitBase"), &Z_Registration_Info_UClass_UUnitBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUnitBase), 249873830U) },
+		{ Z_Construct_UClass_UUnitBase, UUnitBase::StaticClass, TEXT("UUnitBase"), &Z_Registration_Info_UClass_UUnitBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUnitBase), 2501488038U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_98211350(TEXT("/Script/UMV"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_4039495600(TEXT("/Script/UMV"),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::ScriptStructInfo),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::EnumInfo));

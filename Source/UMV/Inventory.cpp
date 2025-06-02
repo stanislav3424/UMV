@@ -6,28 +6,10 @@ void UInventory::Initialization()
 {
     Super::Initialization();
     if (!MainGameState)
-    {
         return;
-    }
 
-    if (!MainGameState->InventoryDataTable)
-    {
-        return;
-    }
 
-    FInventoryData* FoundRow =
-        MainGameState->InventoryDataTable->FindRow<FInventoryData>(DataTableRowHandle.RowName, TEXT(""));
-    if (FoundRow)
-    {
-        InventoryData = *FoundRow;
-    }
-    else
-    {
-        UE_LOG(LogTemp, Error, TEXT("UItemBase::Initialization: Row '%s' not found in ItemDataTable"),
-               *DataTableRowHandle.RowName.ToString());
-        ConditionalBeginDestroy();
-        return;
-    }
+    InventoryData = MainGameState->GetInventoryData(DataTableRowHandle);
 
     Inventory.SetNum(InventoryData.Size.X * InventoryData.Size.Y);
 }

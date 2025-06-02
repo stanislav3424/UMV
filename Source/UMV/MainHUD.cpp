@@ -17,12 +17,12 @@ void AMainHUD::DrawHUD()
         const float StartY = SelectionStart.Y;
         const float EndX = SelectionEnd.X;
         const float EndY = SelectionEnd.Y;
-        this->DrawRect(FLinearColor(0.f, 1.f, 1.f, 0.1f), StartX, StartY, EndX - StartX, EndY - StartY);
+        DrawRect(FLinearColor(0.f, 1.f, 1.f, 0.1f), StartX, StartY, EndX - StartX, EndY - StartY);
         const auto LinerColor = FLinearColor(0.f, 1.f, 1.f, 1.f);
-        this->DrawLine(StartX, StartY, StartX, EndY, LinerColor, 1.f);
-        this->DrawLine(StartX, StartY, EndX, StartY, LinerColor, 1.f);
-        this->DrawLine(EndX, EndY, EndX, StartY, LinerColor, 1.f);
-        this->DrawLine(EndX, EndY, StartX, EndY, LinerColor, 1.f);
+        DrawLine(StartX, StartY, StartX, EndY, LinerColor, 1.f);
+        DrawLine(StartX, StartY, EndX, StartY, LinerColor, 1.f);
+        DrawLine(EndX, EndY, EndX, StartY, LinerColor, 1.f);
+        DrawLine(EndX, EndY, StartX, EndY, LinerColor, 1.f);
 
         TArray<ARepresentedUnitBase*> SelectedRepresentedUnits;
         GetActorsInSelectionRectangle<ARepresentedUnitBase>(SelectionStart, SelectionEnd, SelectedRepresentedUnits, false, false);

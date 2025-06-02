@@ -6,11 +6,13 @@
 #include "UnitBase.h"
 #include "RepresentedUnitBase.h"
 
-AMainController::AMainController() { bShowMouseCursor = true; }
+AMainController::AMainController() {  }
 
 void AMainController::BeginPlay()
 {
     Super::BeginPlay();
+
+    bShowMouseCursor = true;
 
     if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
             ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))

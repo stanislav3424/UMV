@@ -1,5 +1,4 @@
 #include "RepresentedUnitBase.h"
-#include "UnitBase.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/TextRenderComponent.h"
@@ -28,15 +27,17 @@ ARepresentedUnitBase::ARepresentedUnitBase()
     SelectionTextComponent->SetVisibility(false);
     SelectionTextComponent->SetText(FText::FromString("Selected"));
     SelectionTextComponent->SetTextRenderColor(FColor::Green);
-
 }
 
 void ARepresentedUnitBase::BeginPlay()
-{   
+{
     Super::BeginPlay();
 
     MainGameState = Cast<AMainGameState>(GetWorld()->GetGameState());
-    IndependentInitialization();
+    if (MainGameState)
+        UnitData = MainGameState->GetUnitsData(DataTableRowHandle);
+    if (bIndependent)
+        IndependentInitialization();
 }
 
 void ARepresentedUnitBase::Tick(float DeltaTime) { Super::Tick(DeltaTime); }
@@ -50,27 +51,29 @@ void ARepresentedUnitBase::PostInitializeComponents()
 
 // Initialization
 
-void ARepresentedUnitBase::IndependentInitialization()
+void ARepresentedUnitBase::IndependentInitialization() { 
+    UUnitBase* InitializationUnitBase = NewObject<UUnitBase>(this);
+    InitializationUnitBase->Initialization(DataTableRowHandle, this);
+
+    Initialization(InitializationUnitBase);
+}
+
+void ARepresentedUnitBase::Initialization(UUnitBase* InitializationUnitBase)
 {
-    if (!bIndependent)
+    if (UnitBase)
         return;
+
+    UnitBase = InitializationUnitBase;
 }
 
 // Select
 
-void ARepresentedUnitBase::SetSelect(bool bNewSelect)
-{
-    if (bSelect == bNewSelect)
-        return;
-    bSelect = bNewSelect;
-    UpdateVisualizationSelect();
-}
-
 void ARepresentedUnitBase::UpdateVisualizationSelect()
 {
     // Затычка
-    if (SelectionTextComponent)
-    {
-        SelectionTextComponent->SetVisibility(bSelect);
-    }
+    if (!SelectionTextComponent)
+        return;
+    if (!UnitBase)
+        return;
+    SelectionTextComponent->SetVisibility(UnitBase->IsSelect());
 }

@@ -9,13 +9,15 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UUnitBase;
 #ifdef UMV_RepresentedUnitBase_generated_h
 #error "RepresentedUnitBase.generated.h already included, missing '#pragma once' in RepresentedUnitBase.h"
 #endif
 #define UMV_RepresentedUnitBase_generated_h
 
 #define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execSetSelect);
+	DECLARE_FUNCTION(execInitialization); \
+	DECLARE_FUNCTION(execIndependentInitialization);
 
 
 #define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_18_INCLASS_NO_PURE_DECLS \

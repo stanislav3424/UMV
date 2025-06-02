@@ -3,9 +3,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Engine/DataTable.h"
+#include "UnitBase.h"
 #include "RepresentedUnitBase.generated.h"
 
-class UUnitBase;
 class UItemBase;
 class UInventory;
 class UWeapon;
@@ -29,13 +29,19 @@ public:
 
     // Initialization
 
+public:
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
     FDataTableRowHandle DataTableRowHandle;
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
     bool bIndependent = false;
 
+public:
+    UFUNCTION(BlueprintCallable, Category = "Initialization")
     void IndependentInitialization();
+
+    UFUNCTION(BlueprintCallable, Category = "Initialization")
+    void Initialization(UUnitBase* InitializationUnitBase);
 
     // Owner UnitBase
 private:
@@ -51,14 +57,9 @@ private:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
     AMainGameState* MainGameState;
 
-    // Select
-private:
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Select", meta = (AllowPrivateAccess = "true"))
-    bool bSelect = false;
+    FUnitData UnitData;
 
-public:
-    UFUNCTION(BlueprintCallable, Category = "Selection")
-    void SetSelect(bool bNewSelect);
+    // Select
 
 public:
     void UpdateVisualizationSelect();
