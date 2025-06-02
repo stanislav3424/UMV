@@ -4,7 +4,7 @@
 #include "GameFramework/HUD.h"
 #include "MainHUD.generated.h"
 
-class AUnit;
+class ARepresentedUnitBase;
 class AMainController;
 
 UCLASS()

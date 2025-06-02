@@ -2,7 +2,7 @@
 #include "MainController.h"
 #include "CanvasItem.h"
 #include "Engine/Canvas.h"
-#include "Unit.h"
+#include "RepresentedUnitBase.h"
 
 void AMainHUD::DrawHUD()
 {
@@ -24,9 +24,18 @@ void AMainHUD::DrawHUD()
         this->DrawLine(EndX, EndY, EndX, StartY, LinerColor, 1.f);
         this->DrawLine(EndX, EndY, StartX, EndY, LinerColor, 1.f);
 
-        TArray<AUnit*> SelectedUnits;
-        GetActorsInSelectionRectangle<AUnit>(SelectionStart, SelectionEnd, SelectedUnits, false, false);
-        MainController->NewSelectedUnits = TSet<AUnit*>(SelectedUnits);
+        TArray<ARepresentedUnitBase*> SelectedRepresentedUnits;
+        GetActorsInSelectionRectangle<ARepresentedUnitBase>(SelectionStart, SelectionEnd, SelectedRepresentedUnits, false, false);
+        TSet<UUnitBase*> SelectedUnits;
+        for (ARepresentedUnitBase* RepresentedUnitBase : SelectedRepresentedUnits)
+            if (IsValid(RepresentedUnitBase))
+            {
+                UUnitBase* UnitBase = RepresentedUnitBase->GetUnitBase();
+                if (UnitBase)
+                    SelectedUnits.Add(UnitBase);
+            }
+
+        MainController->NewSelectedUnits = SelectedUnits;
     }
 }
 

@@ -10,10 +10,12 @@
 
 class UInputAction;
 class UInputMappingContext;
-class AUnit;
+class ARepresentedUnitBase;
 class AMainHUD;
+class UUnitBase;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnSelectedUnitsChanged);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnUISelectedUnitChanged);
 
 UCLASS()
 class UMV_API AMainController : public APlayerController
@@ -56,10 +58,19 @@ private:
     bool bVaitingSelecting = false;
 
     UPROPERTY(BlueprintReadOnly, Category = "Selection", meta = (AllowPrivateAccess = "true"))
-    TSet<AUnit*> SelectedUnits;
+    TSet<UUnitBase*> SelectedUnits;
 
     UPROPERTY()
-    TSet<AUnit*> NewSelectedUnits;
+    TSet<UUnitBase*> NewSelectedUnits;
+
+    UPROPERTY(BlueprintReadOnly, Category = "Selection", meta = (AllowPrivateAccess = "true"))
+    TSet<UUnitBase*> AddedUnits;
+
+    UPROPERTY(BlueprintReadOnly, Category = "Selection", meta = (AllowPrivateAccess = "true"))
+    TSet<UUnitBase*> RemovedUnits;
+
+    UPROPERTY(BlueprintReadOnly, Category = "Selection", meta = (AllowPrivateAccess = "true"))
+    UUnitBase* UISelectedUnit;
 
     void UpdateUnitsSelection();
     bool AreUnitSetsEqual();
@@ -70,8 +81,15 @@ public:
     UPROPERTY(BlueprintAssignable, Category = "Selection")
     FOnSelectedUnitsChanged OnSelectedUnitsChanged;
 
-    UFUNCTION(BlueprintPure, Category = "Selection")
-    const TSet<AUnit*>& GetSelectedUnits() const { return SelectedUnits; };
+    UPROPERTY(BlueprintAssignable, Category = "Selection")
+    FOnSelectedUnitsChanged OnUISelectedUnitChanged;
+
+    UFUNCTION(BlueprintCallable)
+    bool UISelectUnit(UUnitBase* Unit);
+
+    const TSet<UUnitBase*>& GetSelectedUnits() const { return SelectedUnits; };
+
+   
 
     // HandleCommand
 
@@ -84,4 +102,6 @@ private:
 
 public:
     float GetSizeCell() { return SizeCell; }
+
+
 };

@@ -37,13 +37,16 @@ void UItemBase::Spawn(FTransform& Transform)
         GetWorld()->SpawnActor<ARepresentedActorBase>(ItemData.RepresentedActorClass, Transform, SpawnParameters);
 }
 
-void UItemBase::SpawnAndAttachSkeleton(AUnit* Unit, EEquipmentSlots EquipmentSlots)
+void UItemBase::SpawnAndAttachSkeleton(UUnitBase* Unit, EEquipmentSlots EquipmentSlots)
 {
+    ARepresentedUnitBase* RepresentedUnitBase = Unit->GetRepresentedUnitBase();
+    if (!IsValid(RepresentedUnitBase))
+        return;
     FActorSpawnParameters SpawnParameters;
     SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-    SpawnParameters.Owner = Unit;
+    SpawnParameters.Owner = RepresentedUnitBase;
 
-    USkeletalMeshComponent* MeshRef = Unit->GetMesh();
+    USkeletalMeshComponent* MeshRef = RepresentedUnitBase->GetMesh();
     if (!MeshRef)
         return;
     FName SocketName = Unit->GetSocketName(EquipmentSlots);

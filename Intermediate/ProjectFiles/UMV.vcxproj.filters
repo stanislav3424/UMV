@@ -88,6 +88,12 @@
     <ClCompile Include="..\..\Source\UMV\RepresentedActorBase.h">
       <Filter>Source\UMV</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\UMV\RepresentedUnitBase.cpp">
+      <Filter>Source\UMV</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UMV\RepresentedUnitBase.h">
+      <Filter>Source\UMV</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\UMV\UI_Item.cpp">
       <Filter>Source\UMV</Filter>
     </ClCompile>
@@ -103,10 +109,10 @@
     <ClCompile Include="..\..\Source\UMV\UMV.h">
       <Filter>Source\UMV</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\UMV\Unit.cpp">
+    <ClCompile Include="..\..\Source\UMV\UnitBase.cpp">
       <Filter>Source\UMV</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\UMV\Unit.h">
+    <ClCompile Include="..\..\Source\UMV\UnitBase.h">
       <Filter>Source\UMV</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UMV\Weapon.cpp">

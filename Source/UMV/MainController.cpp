@@ -3,7 +3,8 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputAction.h"
 #include "MainHUD.h"
-#include "Unit.h"
+#include "UnitBase.h"
+#include "RepresentedUnitBase.h"
 
 AMainController::AMainController() { bShowMouseCursor = true; }
 
@@ -97,17 +98,26 @@ void AMainController::UpdateUnitsSelection()
 {
     if (AreUnitSetsEqual())
         return;
-    TSet<AUnit*> AddedUnits = NewSelectedUnits.Difference(SelectedUnits);
-    TSet<AUnit*> RemovedUnits = SelectedUnits.Difference(NewSelectedUnits);
-    for (AUnit* Unit : AddedUnits)
-        if (IsValid(Unit))
+    AddedUnits = NewSelectedUnits.Difference(SelectedUnits);
+    RemovedUnits = SelectedUnits.Difference(NewSelectedUnits);
+    for (UUnitBase* Unit : AddedUnits)
+        if (Unit)
             Unit->SetSelect(true);
-    for (AUnit* Unit : RemovedUnits)
-        if (IsValid(Unit))
+    for (UUnitBase* Unit : RemovedUnits)
+        if (Unit)
             Unit->SetSelect(false);
 
     SelectedUnits = NewSelectedUnits;
     OnSelectedUnitsChanged.Broadcast();
+
+    if (SelectedUnits.Contains(UISelectedUnit))
+        return;
+    for (UUnitBase* Unit : SelectedUnits)
+        if (Unit)
+        {
+            UISelectUnit(Unit);
+            break;
+        }
 }
 
 bool AMainController::AreUnitSetsEqual()
@@ -115,27 +125,45 @@ bool AMainController::AreUnitSetsEqual()
     if (SelectedUnits.Num() != NewSelectedUnits.Num())
         return false;
 
-    for (AUnit* Unit : SelectedUnits)
+    for (UUnitBase* Unit : SelectedUnits)
     {
-        if (!NewSelectedUnits.Contains(Unit))
-            return false;
+        if (Unit)
+            if (!NewSelectedUnits.Contains(Unit))
+                return false;
     }
     return true;
 }
 
-void AMainController::SelectUnit() {
+void AMainController::SelectUnit()
+{
     FHitResult HitResult;
     NewSelectedUnits.Empty();
     if (GetHitResultUnderCursor(ECC_Visibility, false, HitResult))
     {
         if (IsValid(HitResult.GetActor()))
         {
-            AUnit* Unit = Cast<AUnit>(HitResult.GetActor());
+            ARepresentedUnitBase* Unit = Cast<ARepresentedUnitBase>(HitResult.GetActor());
             if (IsValid(Unit))
-                NewSelectedUnits.Add(Unit);
+            {
+                UUnitBase* UnitBase = Unit->GetUnitBase();
+                if (UnitBase)
+                    NewSelectedUnits.Add(UnitBase);
+            }
         }
     }
     UpdateUnitsSelection();
+}
+
+bool AMainController::UISelectUnit(UUnitBase* Unit)
+{
+    if (!IsValid(Unit))
+        return false;
+    if (!SelectedUnits.Contains(Unit))
+        return false;
+
+    UISelectedUnit = Unit;
+    OnUISelectedUnitChanged.Broadcast();
+    return true;
 }
 
 // HandleCommand
@@ -147,12 +175,12 @@ bool AMainController::MoveToLocation()
 
     if (GetHitResultUnderCursor(ECC_Visibility, false, HitResult))
     {
-        for (AUnit* Unit : SelectedUnits)
+        for (UUnitBase* Unit : SelectedUnits)
         {
-            if (!IsValid(Unit))
+            if (Unit)
                 continue;
 
-            AAIController* AIController = Cast<AAIController>(Unit->GetController());
+            AAIController* AIController = Cast<AAIController>(Unit->GetRepresentedUnitBase()->GetController());
             if (AIController)
             {
                 AIController->MoveToLocation(HitResult.Location);
@@ -163,4 +191,6 @@ bool AMainController::MoveToLocation()
 
     return bMove;
 }
+
+// UI
 

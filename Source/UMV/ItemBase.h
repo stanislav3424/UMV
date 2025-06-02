@@ -5,7 +5,8 @@
 #include "Materials/MaterialInstanceDynamic.h"
 #include "RealtimeRenderingPipeline.h"
 #include "Kismet/GameplayStatics.h"
-#include "Unit.h"
+#include "RepresentedUnitBase.h"
+#include "UnitBase.h"
 #include "ItemBase.generated.h"
 
 class AMainGameState;
@@ -51,7 +52,7 @@ public:
     virtual void Initialization();
 
     void Spawn(FTransform& Transform);
-    void SpawnAndAttachSkeleton(AUnit* Unit, EEquipmentSlots EquipmentSlots);
+    void SpawnAndAttachSkeleton(UUnitBase* Unit, EEquipmentSlots EquipmentSlots);
     void RemoveRepresentedActor();
     int32 GetSize() { return ItemData.Size.Y * ItemData.Size.X; }
     int32 GetWidth() { return ItemData.Size.X; }

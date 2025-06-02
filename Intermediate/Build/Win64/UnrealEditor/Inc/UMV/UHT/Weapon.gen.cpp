@@ -29,9 +29,6 @@ struct Z_Construct_UClass_UWeapon_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "/**\n * \n */" },
-#endif
 		{ "IncludePath", "Weapon.h" },
 		{ "ModuleRelativePath", "Weapon.h" },
 	};
@@ -83,10 +80,10 @@ UWeapon::~UWeapon() {}
 struct Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Weapon_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UWeapon, UWeapon::StaticClass, TEXT("UWeapon"), &Z_Registration_Info_UClass_UWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeapon), 1668077062U) },
+		{ Z_Construct_UClass_UWeapon, UWeapon::StaticClass, TEXT("UWeapon"), &Z_Registration_Info_UClass_UWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeapon), 161948123U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Weapon_h_790647755(TEXT("/Script/UMV"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Weapon_h_918287119(TEXT("/Script/UMV"),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Weapon_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Weapon_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

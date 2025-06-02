@@ -8,6 +8,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeUMV_init() {}
 	UMV_API UFunction* Z_Construct_UDelegateFunction_UMV_OnSelectedUnitsChanged__DelegateSignature();
+	UMV_API UFunction* Z_Construct_UDelegateFunction_UMV_OnUISelectedUnitChanged__DelegateSignature();
 	static FPackageRegistrationInfo Z_Registration_Info_UPackage__Script_UMV;
 	FORCENOINLINE UPackage* Z_Construct_UPackage__Script_UMV()
 	{
@@ -15,19 +16,20 @@ void EmptyLinkFunctionForGeneratedCodeUMV_init() {}
 		{
 			static UObject* (*const SingletonFuncArray[])() = {
 				(UObject* (*)())Z_Construct_UDelegateFunction_UMV_OnSelectedUnitsChanged__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_UMV_OnUISelectedUnitChanged__DelegateSignature,
 			};
 			static const UECodeGen_Private::FPackageParams PackageParams = {
 				"/Script/UMV",
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x52C4492D,
-				0xB59BE16D,
+				0xE47BA9F8,
+				0x77819D1E,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_UMV.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_UMV.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_UMV(Z_Construct_UPackage__Script_UMV, TEXT("/Script/UMV"), Z_Registration_Info_UPackage__Script_UMV, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x52C4492D, 0xB59BE16D));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_UMV(Z_Construct_UPackage__Script_UMV, TEXT("/Script/UMV"), Z_Registration_Info_UPackage__Script_UMV, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xE47BA9F8, 0x77819D1E));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
