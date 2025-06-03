@@ -21,16 +21,13 @@ struct FItemData : public FTableRowBase
     GENERATED_BODY()
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    FName ItemID;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FText DisplayName;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    TSubclassOf<UItemBase> ItemBase;
+    TSubclassOf<UItemBase> ClassItemBase;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowAbstract = "false"))
-    TSubclassOf<ARepresentedActorBase> RepresentedActorClass;
+    TSubclassOf<ARepresentedActorBase> ClassRepresentedActorBase;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FIntPoint Size = {0, 0};
@@ -42,29 +39,19 @@ class UMV_API UItemBase : public UObject
     GENERATED_BODY()
 
     // Initialization
-private:
-    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
-    ARepresentedActorBase* RepresentedActorBase;
-
 protected:
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
     FDataTableRowHandle DataTableRowHandle;
 
-public:
-    UFUNCTION(BlueprintCallable)
-    virtual void Initialization(FDataTableRowHandle InitializationDataTableRowHandle,
-                                ARepresentedActorBase* InitializationRepresentedActorBase = nullptr);
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
+    ARepresentedActorBase* RepresentedActorBase;
 
-    void Spawn(FTransform& Transform);
-    void SpawnAndAttachSkeleton(UUnitBase* Unit, EEquipmentSlots EquipmentSlots);
-    void RemoveRepresentedActor();
-    int32 GetSize() { return ItemData.Size.Y * ItemData.Size.X; }
-    int32 GetWidth() { return ItemData.Size.X; }
-    int32 GetHeight() { return ItemData.Size.Y; }
-    TSubclassOf<ARepresentedActorBase> GetRepresentedClass() { return ItemData.RepresentedActorClass; }
-    ARepresentedActorBase* GetRepresentedActor() { return RepresentedActorBase; }
+    // Data
 
 protected:
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
+    FName UnitName;
+
     UPROPERTY(EditAnywhere, BlueprintReadOnly)
     AMainGameState* MainGameState;
 
@@ -73,6 +60,27 @@ protected:
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly)
     FItemData ItemData;
+
+public:
+    UFUNCTION(BlueprintCallable)
+    virtual void Initialization(FDataTableRowHandle InitializationDataTableRowHandle,
+                                ARepresentedActorBase* InitializationRepresentedActorBase = nullptr);
+    // SpawnRepresentedActorBase
+
+    ARepresentedActorBase* SpawnRepresentedActorBase(const FTransform& SpawnTransform,
+                                                   const FActorSpawnParameters& SpawnParameters);
+
+    void Spawn(FTransform& Transform);
+    void SpawnAndAttachSkeleton(UUnitBase* Unit, EEquipmentSlots EquipmentSlots);
+    void RemoveRepresentedActor();
+    int32 GetSize() { return ItemData.Size.Y * ItemData.Size.X; }
+    int32 GetWidth() { return ItemData.Size.X; }
+    int32 GetHeight() { return ItemData.Size.Y; }
+    TSubclassOf<ARepresentedActorBase> GetRepresentedClass() { return ItemData.ClassRepresentedActorBase; }
+    ARepresentedActorBase* GetRepresentedActor() { return RepresentedActorBase; }
+
+protected:
+
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly)
     bool bRotated = false;

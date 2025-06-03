@@ -23,7 +23,49 @@ FName AMainGameState::GenerateUniqueName(const UObject* Object)
     return FName(FString::Printf(TEXT("%s_%s"), *ClassName, *RandomHash));
 }
 
-// DT
+// Create / Spawn
+
+UUnitBase* AMainGameState::CreateUnitBase(const FDataTableRowHandle& DataTableRowHandle)
+{
+    UUnitBase* UnitBase = NewObject<UUnitBase>(this);
+    if (!UnitBase)
+        return nullptr;
+    UnitBase->Initialization(DataTableRowHandle);
+    return UnitBase;
+}
+
+UItemBase* AMainGameState::CreateItemBase(const FDataTableRowHandle& DataTableRowHandle)
+{
+    UItemBase* ItemBase = NewObject<UItemBase>(this);
+    if (!ItemBase)
+        return nullptr;
+    ItemBase->Initialization(DataTableRowHandle);
+    return ItemBase;
+}
+
+ARepresentedUnitBase* AMainGameState::SpawnUnit(const FDataTableRowHandle& DataTableRowHandle,
+                                                const FTransform& SpawnTransform)
+{
+    FActorSpawnParameters SpawnParameters;
+    SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    UUnitBase* UnitBase = CreateUnitBase(DataTableRowHandle);
+    if (!UnitBase)
+        return nullptr;
+    return UnitBase->SpawnRepresentedUnitBase(SpawnTransform, SpawnParameters);
+}
+
+ARepresentedActorBase* AMainGameState::SpawnItem(const FDataTableRowHandle& DataTableRowHandle,
+                                                const FTransform& SpawnTransform)
+{
+    FActorSpawnParameters SpawnParameters;
+    SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    UItemBase* ItemBase = CreateItemBase(DataTableRowHandle);
+    if (!ItemBase)
+        return nullptr;
+    return ItemBase->SpawnRepresentedActorBase(SpawnTransform, SpawnParameters);
+}
+
+// DataTable
 
 template <typename DataType>
 const DataType AMainGameState::GetDataFromDataTable(const FDataTableRowHandle& DataTableRowHandle) const

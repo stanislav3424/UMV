@@ -32,12 +32,26 @@ void UItemBase::Initialization(FDataTableRowHandle InitializationDataTableRowHan
         RepresentedActorBase = InitializationRepresentedActorBase;
 }
 
+// SpawnRepresentedActorBase
+
+ARepresentedActorBase* UItemBase::SpawnRepresentedActorBase(const FTransform& SpawnTransform,
+                                                          const FActorSpawnParameters& SpawnParameters)
+{
+    RepresentedActorBase = GetWorld()->SpawnActor<ARepresentedActorBase>(ItemData.ClassRepresentedActorBase,
+                                                                       SpawnTransform, SpawnParameters);
+    if (IsValid(RepresentedActorBase))
+        RepresentedActorBase->Initialization(this);
+    else
+        RepresentedActorBase = nullptr;
+    return RepresentedActorBase;
+}
+
 void UItemBase::Spawn(FTransform& Transform)
 {
     FActorSpawnParameters SpawnParameters;
     SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
     RepresentedActorBase =
-        GetWorld()->SpawnActor<ARepresentedActorBase>(ItemData.RepresentedActorClass, Transform, SpawnParameters);
+        GetWorld()->SpawnActor<ARepresentedActorBase>(ItemData.ClassRepresentedActorBase, Transform, SpawnParameters);
 }
 
 void UItemBase::SpawnAndAttachSkeleton(UUnitBase* Unit, EEquipmentSlots EquipmentSlots)

@@ -9,6 +9,10 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class ARepresentedActorBase;
+class ARepresentedUnitBase;
+class UItemBase;
+class UUnitBase;
 struct FDataTableRowHandle;
 struct FInventoryData;
 struct FItemData;
@@ -18,13 +22,17 @@ struct FUnitData;
 #endif
 #define UMV_MainGameState_generated_h
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execGetInventoryData); \
 	DECLARE_FUNCTION(execGetItemData); \
-	DECLARE_FUNCTION(execGetUnitsData);
+	DECLARE_FUNCTION(execGetUnitsData); \
+	DECLARE_FUNCTION(execSpawnItem); \
+	DECLARE_FUNCTION(execSpawnUnit); \
+	DECLARE_FUNCTION(execCreateItemBase); \
+	DECLARE_FUNCTION(execCreateUnitBase);
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_INCLASS_NO_PURE_DECLS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMainGameState(); \
 	friend struct Z_Construct_UClass_AMainGameState_Statics; \
@@ -33,7 +41,7 @@ public: \
 	DECLARE_SERIALIZER(AMainGameState)
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_ENHANCED_CONSTRUCTORS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_17_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AMainGameState(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -47,13 +55,13 @@ public: \
 	NO_API virtual ~AMainGameState();
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_11_PROLOG
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_GENERATED_BODY \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_PROLOG
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_INCLASS_NO_PURE_DECLS \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_14_ENHANCED_CONSTRUCTORS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_17_INCLASS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainGameState_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

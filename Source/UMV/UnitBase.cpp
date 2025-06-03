@@ -36,6 +36,20 @@ void UUnitBase::Initialization(FDataTableRowHandle InitializationDataTableRowHan
         UnitName = MainGameState->GenerateUniqueName(this);
 }
 
+// SpawnRepresentedUnitBase
+
+ARepresentedUnitBase* UUnitBase::SpawnRepresentedUnitBase(const FTransform& SpawnTransform,
+                                                          const FActorSpawnParameters& SpawnParameters)
+{
+    RepresentedUnitBase = GetWorld()->SpawnActor<ARepresentedUnitBase>(UnitData.ClassRepresentedUnitBase,
+                                                                       SpawnTransform, SpawnParameters);
+    if (IsValid(RepresentedUnitBase))
+        RepresentedUnitBase->Initialization(this);
+    else
+        RepresentedUnitBase = nullptr;
+    return RepresentedUnitBase;
+}
+
 // Select
 
 void UUnitBase::SetSelect(bool bNewSelect)

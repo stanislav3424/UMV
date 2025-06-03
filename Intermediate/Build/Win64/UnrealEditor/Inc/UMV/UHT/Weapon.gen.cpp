@@ -80,10 +80,10 @@ UWeapon::~UWeapon() {}
 struct Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Weapon_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UWeapon, UWeapon::StaticClass, TEXT("UWeapon"), &Z_Registration_Info_UClass_UWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeapon), 4087470239U) },
+		{ Z_Construct_UClass_UWeapon, UWeapon::StaticClass, TEXT("UWeapon"), &Z_Registration_Info_UClass_UWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeapon), 2598954886U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Weapon_h_1519369148(TEXT("/Script/UMV"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Weapon_h_3135638467(TEXT("/Script/UMV"),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Weapon_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Weapon_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -25,16 +25,13 @@ struct FUnitData : public FTableRowBase
     GENERATED_BODY()
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    FName UnitID;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FText DisplayName;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    TSubclassOf<UUnitBase> UnitBase;
+    TSubclassOf<UUnitBase> ClassUnitBase;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowAbstract = "false"))
-    TSubclassOf<ARepresentedUnitBase> RepresentedUnitBase;
+    TSubclassOf<ARepresentedUnitBase> ClassRepresentedUnitBase;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     float Speed = 600.f;
@@ -73,6 +70,11 @@ private:
 
 public:
     ARepresentedUnitBase* GetRepresentedUnitBase() { return RepresentedUnitBase; }
+
+    // SpawnRepresentedUnitBase
+
+    ARepresentedUnitBase* SpawnRepresentedUnitBase(const FTransform& SpawnTransform,
+                                                   const FActorSpawnParameters& SpawnParameters);
 
     // Select
 private:
