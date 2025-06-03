@@ -17,7 +17,7 @@ UMV_API UClass* Z_Construct_UClass_AMainController();
 UMV_API UClass* Z_Construct_UClass_AMainController_NoRegister();
 UMV_API UClass* Z_Construct_UClass_UUnitBase_NoRegister();
 UMV_API UFunction* Z_Construct_UDelegateFunction_UMV_OnSelectedUnitsChanged__DelegateSignature();
-UMV_API UFunction* Z_Construct_UDelegateFunction_UMV_OnUISelectedUnitChanged__DelegateSignature();
+UMV_API UFunction* Z_Construct_UDelegateFunction_UMV_OnTargetSelectedUnitChanged__DelegateSignature();
 UPackage* Z_Construct_UPackage__Script_UMV();
 // End Cross Module References
 
@@ -47,8 +47,8 @@ void FOnSelectedUnitsChanged_DelegateWrapper(const FMulticastScriptDelegate& OnS
 }
 // End Delegate FOnSelectedUnitsChanged
 
-// Begin Delegate FOnUISelectedUnitChanged
-struct Z_Construct_UDelegateFunction_UMV_OnUISelectedUnitChanged__DelegateSignature_Statics
+// Begin Delegate FOnTargetSelectedUnitChanged
+struct Z_Construct_UDelegateFunction_UMV_OnTargetSelectedUnitChanged__DelegateSignature_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -57,26 +57,26 @@ struct Z_Construct_UDelegateFunction_UMV_OnUISelectedUnitChanged__DelegateSignat
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_UMV_OnUISelectedUnitChanged__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_UMV, nullptr, "OnUISelectedUnitChanged__DelegateSignature", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_UMV_OnUISelectedUnitChanged__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_UMV_OnUISelectedUnitChanged__DelegateSignature_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UDelegateFunction_UMV_OnUISelectedUnitChanged__DelegateSignature()
+const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_UMV_OnTargetSelectedUnitChanged__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_UMV, nullptr, "OnTargetSelectedUnitChanged__DelegateSignature", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_UMV_OnTargetSelectedUnitChanged__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_UMV_OnTargetSelectedUnitChanged__DelegateSignature_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UDelegateFunction_UMV_OnTargetSelectedUnitChanged__DelegateSignature()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_UMV_OnUISelectedUnitChanged__DelegateSignature_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_UMV_OnTargetSelectedUnitChanged__DelegateSignature_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-void FOnUISelectedUnitChanged_DelegateWrapper(const FMulticastScriptDelegate& OnUISelectedUnitChanged)
+void FOnTargetSelectedUnitChanged_DelegateWrapper(const FMulticastScriptDelegate& OnTargetSelectedUnitChanged)
 {
-	OnUISelectedUnitChanged.ProcessMulticastDelegate<UObject>(NULL);
+	OnTargetSelectedUnitChanged.ProcessMulticastDelegate<UObject>(NULL);
 }
-// End Delegate FOnUISelectedUnitChanged
+// End Delegate FOnTargetSelectedUnitChanged
 
-// Begin Class AMainController Function UISelectUnit
-struct Z_Construct_UFunction_AMainController_UISelectUnit_Statics
+// Begin Class AMainController Function IsTargetISelectUnit
+struct Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics
 {
-	struct MainController_eventUISelectUnit_Parms
+	struct MainController_eventIsTargetISelectUnit_Parms
 	{
 		UUnitBase* Unit;
 		bool ReturnValue;
@@ -92,44 +92,87 @@ struct Z_Construct_UFunction_AMainController_UISelectUnit_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AMainController_UISelectUnit_Statics::NewProp_Unit = { "Unit", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(MainController_eventUISelectUnit_Parms, Unit), Z_Construct_UClass_UUnitBase_NoRegister, METADATA_PARAMS(0, nullptr) };
-void Z_Construct_UFunction_AMainController_UISelectUnit_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::NewProp_Unit = { "Unit", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(MainController_eventIsTargetISelectUnit_Parms, Unit), Z_Construct_UClass_UUnitBase_NoRegister, METADATA_PARAMS(0, nullptr) };
+void Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::NewProp_ReturnValue_SetBit(void* Obj)
 {
-	((MainController_eventUISelectUnit_Parms*)Obj)->ReturnValue = 1;
+	((MainController_eventIsTargetISelectUnit_Parms*)Obj)->ReturnValue = 1;
 }
-const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AMainController_UISelectUnit_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(MainController_eventUISelectUnit_Parms), &Z_Construct_UFunction_AMainController_UISelectUnit_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMainController_UISelectUnit_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainController_UISelectUnit_Statics::NewProp_Unit,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainController_UISelectUnit_Statics::NewProp_ReturnValue,
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(MainController_eventIsTargetISelectUnit_Parms), &Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::NewProp_Unit,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::NewProp_ReturnValue,
 };
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainController_UISelectUnit_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainController_UISelectUnit_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainController, nullptr, "UISelectUnit", nullptr, nullptr, Z_Construct_UFunction_AMainController_UISelectUnit_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMainController_UISelectUnit_Statics::PropPointers), sizeof(Z_Construct_UFunction_AMainController_UISelectUnit_Statics::MainController_eventUISelectUnit_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainController_UISelectUnit_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainController_UISelectUnit_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_AMainController_UISelectUnit_Statics::MainController_eventUISelectUnit_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_AMainController_UISelectUnit()
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainController, nullptr, "IsTargetISelectUnit", nullptr, nullptr, Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::PropPointers), sizeof(Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::MainController_eventIsTargetISelectUnit_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::MainController_eventIsTargetISelectUnit_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AMainController_IsTargetISelectUnit()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMainController_UISelectUnit_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMainController_IsTargetISelectUnit_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-DEFINE_FUNCTION(AMainController::execUISelectUnit)
+DEFINE_FUNCTION(AMainController::execIsTargetISelectUnit)
 {
 	P_GET_OBJECT(UUnitBase,Z_Param_Unit);
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	*(bool*)Z_Param__Result=P_THIS->UISelectUnit(Z_Param_Unit);
+	*(bool*)Z_Param__Result=P_THIS->IsTargetISelectUnit(Z_Param_Unit);
 	P_NATIVE_END;
 }
-// End Class AMainController Function UISelectUnit
+// End Class AMainController Function IsTargetISelectUnit
+
+// Begin Class AMainController Function SetTargetSelectUnit
+struct Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics
+{
+	struct MainController_eventSetTargetSelectUnit_Parms
+	{
+		UUnitBase* Unit;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Unit;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics::NewProp_Unit = { "Unit", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(MainController_eventSetTargetSelectUnit_Parms, Unit), Z_Construct_UClass_UUnitBase_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics::NewProp_Unit,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainController, nullptr, "SetTargetSelectUnit", nullptr, nullptr, Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics::PropPointers), sizeof(Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics::MainController_eventSetTargetSelectUnit_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics::MainController_eventSetTargetSelectUnit_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AMainController_SetTargetSelectUnit()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMainController_SetTargetSelectUnit_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMainController::execSetTargetSelectUnit)
+{
+	P_GET_OBJECT(UUnitBase,Z_Param_Unit);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SetTargetSelectUnit(Z_Param_Unit);
+	P_NATIVE_END;
+}
+// End Class AMainController Function SetTargetSelectUnit
 
 // Begin Class AMainController
 void AMainController::StaticRegisterNativesAMainController()
 {
 	UClass* Class = AMainController::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
-		{ "UISelectUnit", &AMainController::execUISelectUnit },
+		{ "IsTargetISelectUnit", &AMainController::execIsTargetISelectUnit },
+		{ "SetTargetSelectUnit", &AMainController::execSetTargetSelectUnit },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -185,7 +228,7 @@ struct Z_Construct_UClass_AMainController_Statics
 		{ "Category", "Selection" },
 		{ "ModuleRelativePath", "MainController.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OnUISelectedUnitChanged_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OnTargetSelectedUnitChanged_MetaData[] = {
 		{ "Category", "Selection" },
 		{ "ModuleRelativePath", "MainController.h" },
 	};
@@ -208,12 +251,13 @@ struct Z_Construct_UClass_AMainController_Statics
 	static const UECodeGen_Private::FSetPropertyParams NewProp_RemovedUnits;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_UISelectedUnit;
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnSelectedUnitsChanged;
-	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnUISelectedUnitChanged;
+	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnTargetSelectedUnitChanged;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_SizeCell;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_AMainController_UISelectUnit, "UISelectUnit" }, // 2446524613
+		{ &Z_Construct_UFunction_AMainController_IsTargetISelectUnit, "IsTargetISelectUnit" }, // 2575976048
+		{ &Z_Construct_UFunction_AMainController_SetTargetSelectUnit, "SetTargetSelectUnit" }, // 821758821
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -234,7 +278,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainControlle
 const UECodeGen_Private::FSetPropertyParams Z_Construct_UClass_AMainController_Statics::NewProp_RemovedUnits = { "RemovedUnits", nullptr, (EPropertyFlags)0x0040000000000014, UECodeGen_Private::EPropertyGenFlags::Set, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainController, RemovedUnits), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RemovedUnits_MetaData), NewProp_RemovedUnits_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainController_Statics::NewProp_UISelectedUnit = { "UISelectedUnit", nullptr, (EPropertyFlags)0x0040000000000014, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainController, UISelectedUnit), Z_Construct_UClass_UUnitBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UISelectedUnit_MetaData), NewProp_UISelectedUnit_MetaData) };
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AMainController_Statics::NewProp_OnSelectedUnitsChanged = { "OnSelectedUnitsChanged", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainController, OnSelectedUnitsChanged), Z_Construct_UDelegateFunction_UMV_OnSelectedUnitsChanged__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnSelectedUnitsChanged_MetaData), NewProp_OnSelectedUnitsChanged_MetaData) }; // 1632559672
-const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AMainController_Statics::NewProp_OnUISelectedUnitChanged = { "OnUISelectedUnitChanged", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainController, OnUISelectedUnitChanged), Z_Construct_UDelegateFunction_UMV_OnSelectedUnitsChanged__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnUISelectedUnitChanged_MetaData), NewProp_OnUISelectedUnitChanged_MetaData) }; // 1632559672
+const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AMainController_Statics::NewProp_OnTargetSelectedUnitChanged = { "OnTargetSelectedUnitChanged", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainController, OnTargetSelectedUnitChanged), Z_Construct_UDelegateFunction_UMV_OnTargetSelectedUnitChanged__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnTargetSelectedUnitChanged_MetaData), NewProp_OnTargetSelectedUnitChanged_MetaData) }; // 69870946
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMainController_Statics::NewProp_SizeCell = { "SizeCell", nullptr, (EPropertyFlags)0x0040000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainController, SizeCell), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SizeCell_MetaData), NewProp_SizeCell_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMainController_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainController_Statics::NewProp_DefaultMappingContext,
@@ -250,7 +294,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMainCont
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainController_Statics::NewProp_RemovedUnits,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainController_Statics::NewProp_UISelectedUnit,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainController_Statics::NewProp_OnSelectedUnitsChanged,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainController_Statics::NewProp_OnUISelectedUnitChanged,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainController_Statics::NewProp_OnTargetSelectedUnitChanged,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainController_Statics::NewProp_SizeCell,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMainController_Statics::PropPointers) < 2048);
@@ -294,10 +338,10 @@ AMainController::~AMainController() {}
 struct Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainController_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMainController, AMainController::StaticClass, TEXT("AMainController"), &Z_Registration_Info_UClass_AMainController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainController), 507546107U) },
+		{ Z_Construct_UClass_AMainController, AMainController::StaticClass, TEXT("AMainController"), &Z_Registration_Info_UClass_AMainController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainController), 503614916U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainController_h_3837883363(TEXT("/Script/UMV"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainController_h_3707092986(TEXT("/Script/UMV"),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainController_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

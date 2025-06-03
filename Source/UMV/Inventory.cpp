@@ -2,15 +2,17 @@
 #include "MainGameState.h"
 #include "MainController.h"
 
-void UInventory::Initialization()
+void UInventory::Initialization(FDataTableRowHandle InitializationDataTableRowHandle,
+                                ARepresentedActorBase* InitializationRepresentedActorBase)
 {
-    Super::Initialization();
+    Super::Initialization(InitializationDataTableRowHandle, InitializationRepresentedActorBase);
     if (!MainGameState)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Error in the file: %s, line: %d"), TEXT(__FILE__), __LINE__);
         return;
-
+    }
 
     InventoryData = MainGameState->GetInventoryData(DataTableRowHandle);
-
     Inventory.SetNum(InventoryData.Size.X * InventoryData.Size.Y);
 }
 

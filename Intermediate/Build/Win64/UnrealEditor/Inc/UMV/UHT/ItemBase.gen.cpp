@@ -56,6 +56,10 @@ struct Z_Construct_UScriptStruct_FItemData_Statics
 		{ "Category", "ItemData" },
 		{ "ModuleRelativePath", "ItemBase.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ItemBase_MetaData[] = {
+		{ "Category", "ItemData" },
+		{ "ModuleRelativePath", "ItemBase.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RepresentedActorClass_MetaData[] = {
 		{ "AllowAbstract", "false" },
 		{ "Category", "ItemData" },
@@ -68,6 +72,7 @@ struct Z_Construct_UScriptStruct_FItemData_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FNamePropertyParams NewProp_ItemID;
 	static const UECodeGen_Private::FTextPropertyParams NewProp_DisplayName;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_ItemBase;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_RepresentedActorClass;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_Size;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
@@ -79,11 +84,13 @@ struct Z_Construct_UScriptStruct_FItemData_Statics
 };
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UScriptStruct_FItemData_Statics::NewProp_ItemID = { "ItemID", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FItemData, ItemID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ItemID_MetaData), NewProp_ItemID_MetaData) };
 const UECodeGen_Private::FTextPropertyParams Z_Construct_UScriptStruct_FItemData_Statics::NewProp_DisplayName = { "DisplayName", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Text, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FItemData, DisplayName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DisplayName_MetaData), NewProp_DisplayName_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UScriptStruct_FItemData_Statics::NewProp_ItemBase = { "ItemBase", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FItemData, ItemBase), Z_Construct_UClass_UClass, Z_Construct_UClass_UItemBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ItemBase_MetaData), NewProp_ItemBase_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UScriptStruct_FItemData_Statics::NewProp_RepresentedActorClass = { "RepresentedActorClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FItemData, RepresentedActorClass), Z_Construct_UClass_UClass, Z_Construct_UClass_ARepresentedActorBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RepresentedActorClass_MetaData), NewProp_RepresentedActorClass_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FItemData_Statics::NewProp_Size = { "Size", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FItemData, Size), Z_Construct_UScriptStruct_FIntPoint, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Size_MetaData), NewProp_Size_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FItemData_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FItemData_Statics::NewProp_ItemID,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FItemData_Statics::NewProp_DisplayName,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FItemData_Statics::NewProp_ItemBase,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FItemData_Statics::NewProp_RepresentedActorClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FItemData_Statics::NewProp_Size,
 };
@@ -160,14 +167,31 @@ DEFINE_FUNCTION(UItemBase::execGetMID)
 // Begin Class UItemBase Function Initialization
 struct Z_Construct_UFunction_UItemBase_Initialization_Statics
 {
+	struct ItemBase_eventInitialization_Parms
+	{
+		FDataTableRowHandle InitializationDataTableRowHandle;
+		ARepresentedActorBase* InitializationRepresentedActorBase;
+	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "CPP_Default_InitializationRepresentedActorBase", "None" },
 		{ "ModuleRelativePath", "ItemBase.h" },
 	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_InitializationDataTableRowHandle;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_InitializationRepresentedActorBase;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UItemBase_Initialization_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UItemBase, nullptr, "Initialization", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020400, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UItemBase_Initialization_Statics::Function_MetaDataParams), Z_Construct_UFunction_UItemBase_Initialization_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UItemBase_Initialization_Statics::NewProp_InitializationDataTableRowHandle = { "InitializationDataTableRowHandle", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ItemBase_eventInitialization_Parms, InitializationDataTableRowHandle), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(0, nullptr) }; // 1360917958
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UItemBase_Initialization_Statics::NewProp_InitializationRepresentedActorBase = { "InitializationRepresentedActorBase", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ItemBase_eventInitialization_Parms, InitializationRepresentedActorBase), Z_Construct_UClass_ARepresentedActorBase_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UItemBase_Initialization_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UItemBase_Initialization_Statics::NewProp_InitializationDataTableRowHandle,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UItemBase_Initialization_Statics::NewProp_InitializationRepresentedActorBase,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UItemBase_Initialization_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UItemBase_Initialization_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UItemBase, nullptr, "Initialization", nullptr, nullptr, Z_Construct_UFunction_UItemBase_Initialization_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UItemBase_Initialization_Statics::PropPointers), sizeof(Z_Construct_UFunction_UItemBase_Initialization_Statics::ItemBase_eventInitialization_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020400, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UItemBase_Initialization_Statics::Function_MetaDataParams), Z_Construct_UFunction_UItemBase_Initialization_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UItemBase_Initialization_Statics::ItemBase_eventInitialization_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_UItemBase_Initialization()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -179,9 +203,11 @@ UFunction* Z_Construct_UFunction_UItemBase_Initialization()
 }
 DEFINE_FUNCTION(UItemBase::execInitialization)
 {
+	P_GET_STRUCT(FDataTableRowHandle,Z_Param_InitializationDataTableRowHandle);
+	P_GET_OBJECT(ARepresentedActorBase,Z_Param_InitializationRepresentedActorBase);
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->Initialization();
+	P_THIS->Initialization(Z_Param_InitializationDataTableRowHandle,Z_Param_InitializationRepresentedActorBase);
 	P_NATIVE_END;
 }
 // End Class UItemBase Function Initialization
@@ -287,7 +313,7 @@ struct Z_Construct_UClass_UItemBase_Statics
 		{ "IsBlueprintBase", "true" },
 		{ "ModuleRelativePath", "ItemBase.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RepresentedActor_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RepresentedActorBase_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Initialization" },
 		{ "ModuleRelativePath", "ItemBase.h" },
@@ -314,7 +340,7 @@ struct Z_Construct_UClass_UItemBase_Statics
 		{ "ModuleRelativePath", "ItemBase.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_RepresentedActor;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_RepresentedActorBase;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_DataTableRowHandle;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MainGameState;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MainController;
@@ -325,7 +351,7 @@ struct Z_Construct_UClass_UItemBase_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UItemBase_GetMID, "GetMID" }, // 2661776818
-		{ &Z_Construct_UFunction_UItemBase_Initialization, "Initialization" }, // 2629807545
+		{ &Z_Construct_UFunction_UItemBase_Initialization, "Initialization" }, // 755466836
 		{ &Z_Construct_UFunction_UItemBase_IsRotated, "IsRotated" }, // 3102517885
 		{ &Z_Construct_UFunction_UItemBase_Rotate, "Rotate" }, // 3508339206
 	};
@@ -335,18 +361,18 @@ struct Z_Construct_UClass_UItemBase_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UItemBase_Statics::NewProp_RepresentedActor = { "RepresentedActor", nullptr, (EPropertyFlags)0x0040000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UItemBase, RepresentedActor), Z_Construct_UClass_ARepresentedActorBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RepresentedActor_MetaData), NewProp_RepresentedActor_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UItemBase_Statics::NewProp_RepresentedActorBase = { "RepresentedActorBase", nullptr, (EPropertyFlags)0x0040000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UItemBase, RepresentedActorBase), Z_Construct_UClass_ARepresentedActorBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RepresentedActorBase_MetaData), NewProp_RepresentedActorBase_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UItemBase_Statics::NewProp_DataTableRowHandle = { "DataTableRowHandle", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UItemBase, DataTableRowHandle), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DataTableRowHandle_MetaData), NewProp_DataTableRowHandle_MetaData) }; // 1360917958
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UItemBase_Statics::NewProp_MainGameState = { "MainGameState", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UItemBase, MainGameState), Z_Construct_UClass_AMainGameState_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MainGameState_MetaData), NewProp_MainGameState_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UItemBase_Statics::NewProp_MainController = { "MainController", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UItemBase, MainController), Z_Construct_UClass_AMainController_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MainController_MetaData), NewProp_MainController_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UItemBase_Statics::NewProp_ItemData = { "ItemData", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UItemBase, ItemData), Z_Construct_UScriptStruct_FItemData, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ItemData_MetaData), NewProp_ItemData_MetaData) }; // 1798542583
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UItemBase_Statics::NewProp_ItemData = { "ItemData", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UItemBase, ItemData), Z_Construct_UScriptStruct_FItemData, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ItemData_MetaData), NewProp_ItemData_MetaData) }; // 591483255
 void Z_Construct_UClass_UItemBase_Statics::NewProp_bRotated_SetBit(void* Obj)
 {
 	((UItemBase*)Obj)->bRotated = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UItemBase_Statics::NewProp_bRotated = { "bRotated", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UItemBase), &Z_Construct_UClass_UItemBase_Statics::NewProp_bRotated_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bRotated_MetaData), NewProp_bRotated_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UItemBase_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItemBase_Statics::NewProp_RepresentedActor,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItemBase_Statics::NewProp_RepresentedActorBase,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItemBase_Statics::NewProp_DataTableRowHandle,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItemBase_Statics::NewProp_MainGameState,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItemBase_Statics::NewProp_MainController,
@@ -395,13 +421,13 @@ UItemBase::~UItemBase() {}
 struct Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_Statics
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FItemData::StaticStruct, Z_Construct_UScriptStruct_FItemData_Statics::NewStructOps, TEXT("ItemData"), &Z_Registration_Info_UScriptStruct_ItemData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FItemData), 1798542583U) },
+		{ FItemData::StaticStruct, Z_Construct_UScriptStruct_FItemData_Statics::NewStructOps, TEXT("ItemData"), &Z_Registration_Info_UScriptStruct_ItemData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FItemData), 591483255U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UItemBase, UItemBase::StaticClass, TEXT("UItemBase"), &Z_Registration_Info_UClass_UItemBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItemBase), 3362126371U) },
+		{ Z_Construct_UClass_UItemBase, UItemBase::StaticClass, TEXT("UItemBase"), &Z_Registration_Info_UClass_UItemBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItemBase), 1228906775U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_4289895376(TEXT("/Script/UMV"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_1640910489(TEXT("/Script/UMV"),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_ItemBase_h_Statics::ScriptStructInfo),
 	nullptr, 0);

@@ -13,7 +13,7 @@ struct FInventoryData : public FTableRowBase
     GENERATED_BODY()
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    FIntPoint Size;
+    FIntPoint Size = {0, 0};
 };
 
 USTRUCT(BlueprintType)
@@ -22,10 +22,10 @@ struct FItemPositionData
     GENERATED_BODY()
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly)
-    UItemBase* Item;
+    UItemBase* Item = nullptr;
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly)
-    FIntPoint Position;
+    FIntPoint Position = {0, 0};
 };
 
 USTRUCT(BlueprintType)
@@ -34,16 +34,16 @@ struct FLine
     GENERATED_BODY()
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    float StartX;
+    float StartX = 0.f;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    float StartY;
+    float StartY = 0.f;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    float EndX;
+    float EndX = 0.f;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    float EndY;
+    float EndY = 0.f;
 
 };
 
@@ -53,7 +53,8 @@ class UMV_API UInventory : public UItemBase
     GENERATED_BODY()
 
 public:
-    virtual void Initialization() override;
+    virtual void Initialization(FDataTableRowHandle InitializationDataTableRowHandle,
+                                ARepresentedActorBase* InitializationRepresentedActorBase = nullptr) override;
 
     // Data
 protected:

@@ -11,8 +11,9 @@ class UInventory;
 class UWeapon;
 class ARepresentedActorBase;
 class AMainGameState;
+class UCharacterMovementComponent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UMV_API ARepresentedUnitBase : public ACharacter
 {
     GENERATED_BODY()
@@ -42,6 +43,9 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Initialization")
     void Initialization(UUnitBase* InitializationUnitBase);
+
+private:
+    void InitializingStats();
 
     // Owner UnitBase
 private:

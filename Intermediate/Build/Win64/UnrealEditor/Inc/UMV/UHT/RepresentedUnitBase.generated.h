@@ -15,12 +15,12 @@ class UUnitBase;
 #endif
 #define UMV_RepresentedUnitBase_generated_h
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execInitialization); \
 	DECLARE_FUNCTION(execIndependentInitialization);
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_18_INCLASS_NO_PURE_DECLS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesARepresentedUnitBase(); \
 	friend struct Z_Construct_UClass_ARepresentedUnitBase_Statics; \
@@ -29,7 +29,7 @@ public: \
 	DECLARE_SERIALIZER(ARepresentedUnitBase)
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_18_ENHANCED_CONSTRUCTORS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	ARepresentedUnitBase(ARepresentedUnitBase&&); \
@@ -41,13 +41,13 @@ public: \
 	NO_API virtual ~ARepresentedUnitBase();
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_15_PROLOG
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_18_GENERATED_BODY \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_16_PROLOG
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_18_INCLASS_NO_PURE_DECLS \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_18_ENHANCED_CONSTRUCTORS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_INCLASS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

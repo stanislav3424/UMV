@@ -112,14 +112,23 @@ void AMainController::UpdateUnitsSelection()
     SelectedUnits = NewSelectedUnits;
     OnSelectedUnitsChanged.Broadcast();
 
-    if (SelectedUnits.Contains(UISelectedUnit))
-        return;
-    for (UUnitBase* Unit : SelectedUnits)
-        if (Unit)
+
+    if (SelectedUnits.IsEmpty())
+    {
+        SetTargetSelectUnit(nullptr);
+    }
+    else if (!IsValid(UISelectedUnit) || !SelectedUnits.Contains(UISelectedUnit))
+    {
+
+        for (UUnitBase* Unit : SelectedUnits)
         {
-            UISelectUnit(Unit);
-            break;
+            if (IsValid(Unit))
+            {
+                SetTargetSelectUnit(Unit);
+                break;
+            }
         }
+    }
 }
 
 bool AMainController::AreUnitSetsEqual()
@@ -156,16 +165,21 @@ void AMainController::SelectUnit()
     UpdateUnitsSelection();
 }
 
-bool AMainController::UISelectUnit(UUnitBase* Unit)
+void AMainController::SetTargetSelectUnit(UUnitBase* Unit)
 {
-    if (!IsValid(Unit))
-        return false;
-    if (!SelectedUnits.Contains(Unit))
-        return false;
-
+    if (!Unit)
+        return;
     UISelectedUnit = Unit;
-    OnUISelectedUnitChanged.Broadcast();
-    return true;
+    OnTargetSelectedUnitChanged.Broadcast();
+}
+
+bool AMainController::IsTargetISelectUnit(UUnitBase* Unit)
+{
+    if (!Unit)
+        return false;
+    if (UISelectedUnit == Unit)
+        return true;
+    return false;
 }
 
 // HandleCommand
@@ -177,12 +191,12 @@ bool AMainController::MoveToLocation()
 
     if (GetHitResultUnderCursor(ECC_Visibility, false, HitResult))
     {
-        for (UUnitBase* Unit : SelectedUnits)
+        for (UUnitBase* UnitBase : SelectedUnits)
         {
-            if (Unit)
+            if (!UnitBase)
                 continue;
 
-            AAIController* AIController = Cast<AAIController>(Unit->GetRepresentedUnitBase()->GetController());
+            AAIController* AIController = Cast<AAIController>(UnitBase->GetRepresentedUnitBase()->GetController());
             if (AIController)
             {
                 AIController->MoveToLocation(HitResult.Location);

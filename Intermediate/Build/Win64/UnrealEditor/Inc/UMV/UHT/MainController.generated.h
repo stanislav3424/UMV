@@ -20,11 +20,12 @@ UMV_API void FOnSelectedUnitsChanged_DelegateWrapper(const FMulticastScriptDeleg
 
 
 #define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainController_h_18_DELEGATE \
-UMV_API void FOnUISelectedUnitChanged_DelegateWrapper(const FMulticastScriptDelegate& OnUISelectedUnitChanged);
+UMV_API void FOnTargetSelectedUnitChanged_DelegateWrapper(const FMulticastScriptDelegate& OnTargetSelectedUnitChanged);
 
 
 #define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainController_h_23_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execUISelectUnit);
+	DECLARE_FUNCTION(execIsTargetISelectUnit); \
+	DECLARE_FUNCTION(execSetTargetSelectUnit);
 
 
 #define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_MainController_h_23_INCLASS_NO_PURE_DECLS \

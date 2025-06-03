@@ -18,6 +18,12 @@ public:
 protected:
     virtual void BeginPlay() override;
 
+    // GenerateUniqueName
+
+public:
+    static FName GenerateUniqueName(const UObject* Object);
+
+    // DT
 private:
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
     UDataTable* UnitsDataTable;
@@ -37,4 +43,8 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Data")
     const FInventoryData GetInventoryData(const FDataTableRowHandle& DataTableRowHandle) const;
+
+private:
+    template <typename DataType>
+    const DataType GetDataFromDataTable(const FDataTableRowHandle& DataTableRowHandle) const;
 };

@@ -15,7 +15,7 @@ class AMainHUD;
 class UUnitBase;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnSelectedUnitsChanged);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnUISelectedUnitChanged);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTargetSelectedUnitChanged);
 
 UCLASS()
 class UMV_API AMainController : public APlayerController
@@ -82,14 +82,17 @@ public:
     FOnSelectedUnitsChanged OnSelectedUnitsChanged;
 
     UPROPERTY(BlueprintAssignable, Category = "Selection")
-    FOnSelectedUnitsChanged OnUISelectedUnitChanged;
+    FOnTargetSelectedUnitChanged OnTargetSelectedUnitChanged;
 
     UFUNCTION(BlueprintCallable)
-    bool UISelectUnit(UUnitBase* Unit);
+    void SetTargetSelectUnit(UUnitBase* Unit);
+
+    UFUNCTION(BlueprintCallable)
+    bool IsTargetISelectUnit(UUnitBase* Unit);
+
 
     const TSet<UUnitBase*>& GetSelectedUnits() const { return SelectedUnits; };
 
-   
 
     // HandleCommand
 

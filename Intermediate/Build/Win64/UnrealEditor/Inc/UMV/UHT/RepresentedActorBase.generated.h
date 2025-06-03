@@ -9,10 +9,16 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UItemBase;
 #ifdef UMV_RepresentedActorBase_generated_h
 #error "RepresentedActorBase.generated.h already included, missing '#pragma once' in RepresentedActorBase.h"
 #endif
 #define UMV_RepresentedActorBase_generated_h
+
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedActorBase_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execInitialization); \
+	DECLARE_FUNCTION(execIndependentInitialization);
+
 
 #define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedActorBase_h_14_INCLASS_NO_PURE_DECLS \
 private: \
@@ -39,6 +45,7 @@ public: \
 #define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedActorBase_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedActorBase_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedActorBase_h_14_INCLASS_NO_PURE_DECLS \
 	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedActorBase_h_14_ENHANCED_CONSTRUCTORS \
 private: \

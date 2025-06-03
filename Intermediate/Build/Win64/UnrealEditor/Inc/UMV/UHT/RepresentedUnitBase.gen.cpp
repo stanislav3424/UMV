@@ -113,8 +113,10 @@ struct Z_Construct_UClass_ARepresentedUnitBase_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
 		{ "HideCategories", "Navigation" },
 		{ "IncludePath", "RepresentedUnitBase.h" },
+		{ "IsBlueprintBase", "true" },
 		{ "ModuleRelativePath", "RepresentedUnitBase.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DataTableRowHandle_MetaData[] = {
@@ -219,10 +221,10 @@ ARepresentedUnitBase::~ARepresentedUnitBase() {}
 struct Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ARepresentedUnitBase, ARepresentedUnitBase::StaticClass, TEXT("ARepresentedUnitBase"), &Z_Registration_Info_UClass_ARepresentedUnitBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARepresentedUnitBase), 1019344970U) },
+		{ Z_Construct_UClass_ARepresentedUnitBase, ARepresentedUnitBase::StaticClass, TEXT("ARepresentedUnitBase"), &Z_Registration_Info_UClass_ARepresentedUnitBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARepresentedUnitBase), 3175344331U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_3029559888(TEXT("/Script/UMV"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_4060954903(TEXT("/Script/UMV"),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

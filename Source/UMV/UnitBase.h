@@ -25,19 +25,22 @@ struct FUnitData : public FTableRowBase
     GENERATED_BODY()
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    FName ItemID;
+    FName UnitID;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FText DisplayName;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowAbstract = "false"))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TSubclassOf<UUnitBase> UnitBase;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowAbstract = "false"))
     TSubclassOf<ARepresentedUnitBase> RepresentedUnitBase;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    float Speed = 600.f;
 };
 
-UCLASS()
+UCLASS(Blueprintable)
 class UMV_API UUnitBase : public UObject
 {
     GENERATED_BODY()
@@ -58,6 +61,9 @@ private:
     AMainGameState* MainGameState;
 
     FUnitData UnitData;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
+    FName UnitName;
 
     // RepresentedUnitBase
 private:

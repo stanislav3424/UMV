@@ -6,20 +6,37 @@
 #include "RepresentedActorBase.h"
 #include "Inventory.h"
 
-void UItemBase::Initialization()
+void UItemBase::Initialization(FDataTableRowHandle InitializationDataTableRowHandle,
+                               ARepresentedActorBase* InitializationRepresentedActorBase)
 {
-    MainGameState = Cast<AMainGameState>(GetWorld()->GetGameState());
-    MainController = Cast<AMainController>(GetWorld()->GetFirstPlayerController());
-    if (!MainGameState)
+    DataTableRowHandle = InitializationDataTableRowHandle;
+    if (!GetWorld())
+    {
+        UE_LOG(LogTemp, Error, TEXT("Error in the file: %s, line: %d"), TEXT(__FILE__), __LINE__);
         return;
+    }
+    MainGameState = Cast<AMainGameState>(GetWorld()->GetGameState());
+    if (!MainGameState)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Error in the file: %s, line: %d"), TEXT(__FILE__), __LINE__);
+        return;
+    }
+    MainController = Cast<AMainController>(GetWorld()->GetFirstPlayerController());
+    if (!MainController)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Error in the file: %s, line: %d"), TEXT(__FILE__), __LINE__);
+        return;
+    }
     ItemData = MainGameState->GetItemData(DataTableRowHandle); 
+    if (IsValid(InitializationRepresentedActorBase))
+        RepresentedActorBase = InitializationRepresentedActorBase;
 }
 
 void UItemBase::Spawn(FTransform& Transform)
 {
     FActorSpawnParameters SpawnParameters;
     SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-    RepresentedActor =
+    RepresentedActorBase =
         GetWorld()->SpawnActor<ARepresentedActorBase>(ItemData.RepresentedActorClass, Transform, SpawnParameters);
 }
 
@@ -41,22 +58,21 @@ void UItemBase::SpawnAndAttachSkeleton(UUnitBase* Unit, EEquipmentSlots Equipmen
 
     FTransform SpawnTransform = MeshRef->GetSocketTransform(SocketName);
 
-    RepresentedActor =
+    RepresentedActorBase =
         GetWorld()->SpawnActor<ARepresentedActorBase>(GetRepresentedClass(), SpawnTransform, SpawnParameters);
 
-    if (IsValid(RepresentedActor))
+    if (IsValid(RepresentedActorBase))
     {
-        RepresentedActor->InitializationEquipment();
-        RepresentedActor->AttachToComponent(MeshRef, FAttachmentTransformRules::SnapToTargetIncludingScale,
+        RepresentedActorBase->AttachToComponent(MeshRef, FAttachmentTransformRules::SnapToTargetIncludingScale,
                                                SocketName);
     }
 }
 
 void UItemBase::RemoveRepresentedActor()
 {
-    if (IsValid(RepresentedActor))
-        RepresentedActor->Destroy();
-    RepresentedActor = nullptr;
+    if (IsValid(RepresentedActorBase))
+        RepresentedActorBase->Destroy();
+    RepresentedActorBase = nullptr;
 }
 
 void UItemBase::Rotate()

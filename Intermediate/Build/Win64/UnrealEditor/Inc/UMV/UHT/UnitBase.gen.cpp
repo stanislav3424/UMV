@@ -103,7 +103,7 @@ struct Z_Construct_UScriptStruct_FUnitData_Statics
 		{ "BlueprintType", "true" },
 		{ "ModuleRelativePath", "UnitBase.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ItemID_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_UnitID_MetaData[] = {
 		{ "Category", "UnitData" },
 		{ "ModuleRelativePath", "UnitBase.h" },
 	};
@@ -112,7 +112,6 @@ struct Z_Construct_UScriptStruct_FUnitData_Statics
 		{ "ModuleRelativePath", "UnitBase.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_UnitBase_MetaData[] = {
-		{ "AllowAbstract", "false" },
 		{ "Category", "UnitData" },
 		{ "ModuleRelativePath", "UnitBase.h" },
 	};
@@ -121,11 +120,16 @@ struct Z_Construct_UScriptStruct_FUnitData_Statics
 		{ "Category", "UnitData" },
 		{ "ModuleRelativePath", "UnitBase.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Speed_MetaData[] = {
+		{ "Category", "UnitData" },
+		{ "ModuleRelativePath", "UnitBase.h" },
+	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FNamePropertyParams NewProp_ItemID;
+	static const UECodeGen_Private::FNamePropertyParams NewProp_UnitID;
 	static const UECodeGen_Private::FTextPropertyParams NewProp_DisplayName;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_UnitBase;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_RepresentedUnitBase;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Speed;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static void* NewStructOps()
 	{
@@ -133,15 +137,17 @@ struct Z_Construct_UScriptStruct_FUnitData_Statics
 	}
 	static const UECodeGen_Private::FStructParams StructParams;
 };
-const UECodeGen_Private::FNamePropertyParams Z_Construct_UScriptStruct_FUnitData_Statics::NewProp_ItemID = { "ItemID", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FUnitData, ItemID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ItemID_MetaData), NewProp_ItemID_MetaData) };
+const UECodeGen_Private::FNamePropertyParams Z_Construct_UScriptStruct_FUnitData_Statics::NewProp_UnitID = { "UnitID", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FUnitData, UnitID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UnitID_MetaData), NewProp_UnitID_MetaData) };
 const UECodeGen_Private::FTextPropertyParams Z_Construct_UScriptStruct_FUnitData_Statics::NewProp_DisplayName = { "DisplayName", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Text, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FUnitData, DisplayName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DisplayName_MetaData), NewProp_DisplayName_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UScriptStruct_FUnitData_Statics::NewProp_UnitBase = { "UnitBase", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FUnitData, UnitBase), Z_Construct_UClass_UClass, Z_Construct_UClass_UUnitBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UnitBase_MetaData), NewProp_UnitBase_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UScriptStruct_FUnitData_Statics::NewProp_RepresentedUnitBase = { "RepresentedUnitBase", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FUnitData, RepresentedUnitBase), Z_Construct_UClass_UClass, Z_Construct_UClass_ARepresentedUnitBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RepresentedUnitBase_MetaData), NewProp_RepresentedUnitBase_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FUnitData_Statics::NewProp_Speed = { "Speed", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FUnitData, Speed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Speed_MetaData), NewProp_Speed_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FUnitData_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FUnitData_Statics::NewProp_ItemID,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FUnitData_Statics::NewProp_UnitID,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FUnitData_Statics::NewProp_DisplayName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FUnitData_Statics::NewProp_UnitBase,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FUnitData_Statics::NewProp_RepresentedUnitBase,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FUnitData_Statics::NewProp_Speed,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FUnitData_Statics::PropPointers) < 2048);
 const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FUnitData_Statics::StructParams = {
@@ -458,7 +464,9 @@ struct Z_Construct_UClass_UUnitBase_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
 		{ "IncludePath", "UnitBase.h" },
+		{ "IsBlueprintBase", "true" },
 		{ "ModuleRelativePath", "UnitBase.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DataTableRowHandle_MetaData[] = {
@@ -467,6 +475,11 @@ struct Z_Construct_UClass_UUnitBase_Statics
 		{ "ModuleRelativePath", "UnitBase.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MainGameState_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Data" },
+		{ "ModuleRelativePath", "UnitBase.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_UnitName_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Data" },
 		{ "ModuleRelativePath", "UnitBase.h" },
@@ -494,6 +507,7 @@ struct Z_Construct_UClass_UUnitBase_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FStructPropertyParams NewProp_DataTableRowHandle;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MainGameState;
+	static const UECodeGen_Private::FNamePropertyParams NewProp_UnitName;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_RepresentedUnitBase;
 	static void NewProp_bSelect_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bSelect;
@@ -516,6 +530,7 @@ struct Z_Construct_UClass_UUnitBase_Statics
 };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UUnitBase_Statics::NewProp_DataTableRowHandle = { "DataTableRowHandle", nullptr, (EPropertyFlags)0x0040000000010015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UUnitBase, DataTableRowHandle), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DataTableRowHandle_MetaData), NewProp_DataTableRowHandle_MetaData) }; // 1360917958
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UUnitBase_Statics::NewProp_MainGameState = { "MainGameState", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UUnitBase, MainGameState), Z_Construct_UClass_AMainGameState_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MainGameState_MetaData), NewProp_MainGameState_MetaData) };
+const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UUnitBase_Statics::NewProp_UnitName = { "UnitName", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UUnitBase, UnitName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UnitName_MetaData), NewProp_UnitName_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UUnitBase_Statics::NewProp_RepresentedUnitBase = { "RepresentedUnitBase", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UUnitBase, RepresentedUnitBase), Z_Construct_UClass_ARepresentedUnitBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RepresentedUnitBase_MetaData), NewProp_RepresentedUnitBase_MetaData) };
 void Z_Construct_UClass_UUnitBase_Statics::NewProp_bSelect_SetBit(void* Obj)
 {
@@ -527,6 +542,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UUnitBase_Stat
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UUnitBase_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUnitBase_Statics::NewProp_DataTableRowHandle,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUnitBase_Statics::NewProp_MainGameState,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUnitBase_Statics::NewProp_UnitName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUnitBase_Statics::NewProp_RepresentedUnitBase,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUnitBase_Statics::NewProp_bSelect,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUnitBase_Statics::NewProp_Backpack,
@@ -577,13 +593,13 @@ struct Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source
 		{ EEquipmentSlots_StaticEnum, TEXT("EEquipmentSlots"), &Z_Registration_Info_UEnum_EEquipmentSlots, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 145235594U) },
 	};
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FUnitData::StaticStruct, Z_Construct_UScriptStruct_FUnitData_Statics::NewStructOps, TEXT("UnitData"), &Z_Registration_Info_UScriptStruct_UnitData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FUnitData), 1236317019U) },
+		{ FUnitData::StaticStruct, Z_Construct_UScriptStruct_FUnitData_Statics::NewStructOps, TEXT("UnitData"), &Z_Registration_Info_UScriptStruct_UnitData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FUnitData), 2479918527U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UUnitBase, UUnitBase::StaticClass, TEXT("UUnitBase"), &Z_Registration_Info_UClass_UUnitBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUnitBase), 2501488038U) },
+		{ Z_Construct_UClass_UUnitBase, UUnitBase::StaticClass, TEXT("UUnitBase"), &Z_Registration_Info_UClass_UUnitBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUnitBase), 4130570736U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_4039495600(TEXT("/Script/UMV"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_815173775(TEXT("/Script/UMV"),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::ScriptStructInfo),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::EnumInfo));

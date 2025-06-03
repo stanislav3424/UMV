@@ -2,6 +2,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/TextRenderComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "ItemBase.h"
 #include "Inventory.h"
 #include "MainGameState.h"
@@ -34,10 +35,15 @@ void ARepresentedUnitBase::BeginPlay()
     Super::BeginPlay();
 
     MainGameState = Cast<AMainGameState>(GetWorld()->GetGameState());
-    if (MainGameState)
-        UnitData = MainGameState->GetUnitsData(DataTableRowHandle);
+    if (!MainGameState)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Error in the file: %s, line: %d"), TEXT(__FILE__), __LINE__);
+        return;
+    }
+    UnitData = MainGameState->GetUnitsData(DataTableRowHandle);
     if (bIndependent)
         IndependentInitialization();
+    InitializingStats();
 }
 
 void ARepresentedUnitBase::Tick(float DeltaTime) { Super::Tick(DeltaTime); }
@@ -61,9 +67,20 @@ void ARepresentedUnitBase::IndependentInitialization() {
 void ARepresentedUnitBase::Initialization(UUnitBase* InitializationUnitBase)
 {
     if (UnitBase)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Error in the file: %s, line: %d"), TEXT(__FILE__), __LINE__);
         return;
+    }
 
     UnitBase = InitializationUnitBase;
+}
+
+void ARepresentedUnitBase::InitializingStats()
+{
+    UCharacterMovementComponent* CharacterMovementComponent = GetCharacterMovement();
+    if (!CharacterMovementComponent)
+        return;
+    CharacterMovementComponent->MaxWalkSpeed = UnitData.Speed;
 }
 
 // Select

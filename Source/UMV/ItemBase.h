@@ -26,11 +26,14 @@ struct FItemData : public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FText DisplayName;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    TSubclassOf<UItemBase> ItemBase;
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowAbstract = "false"))
     TSubclassOf<ARepresentedActorBase> RepresentedActorClass;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    FIntPoint Size;
+    FIntPoint Size = {0, 0};
 };
 
 UCLASS(Blueprintable)
@@ -41,7 +44,7 @@ class UMV_API UItemBase : public UObject
     // Initialization
 private:
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
-    ARepresentedActorBase* RepresentedActor;
+    ARepresentedActorBase* RepresentedActorBase;
 
 protected:
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
@@ -49,7 +52,8 @@ protected:
 
 public:
     UFUNCTION(BlueprintCallable)
-    virtual void Initialization();
+    virtual void Initialization(FDataTableRowHandle InitializationDataTableRowHandle,
+                                ARepresentedActorBase* InitializationRepresentedActorBase = nullptr);
 
     void Spawn(FTransform& Transform);
     void SpawnAndAttachSkeleton(UUnitBase* Unit, EEquipmentSlots EquipmentSlots);
@@ -58,7 +62,7 @@ public:
     int32 GetWidth() { return ItemData.Size.X; }
     int32 GetHeight() { return ItemData.Size.Y; }
     TSubclassOf<ARepresentedActorBase> GetRepresentedClass() { return ItemData.RepresentedActorClass; }
-    ARepresentedActorBase* GetRepresentedActor() { return RepresentedActor; }
+    ARepresentedActorBase* GetRepresentedActor() { return RepresentedActorBase; }
 
 protected:
     UPROPERTY(EditAnywhere, BlueprintReadOnly)

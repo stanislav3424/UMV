@@ -6,16 +6,13 @@ ARepresentedActorBase::ARepresentedActorBase()
 {
     PrimaryActorTick.bCanEverTick = true;
 
-    // Create root component
     RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
 
-    // Create mesh component and attach to root
     MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
     MeshComponent->SetupAttachment(RootComponent);
     MeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
     MeshComponent->SetCollisionProfileName(TEXT("NoCollision"));
 
-    // Create arrow component and attach to root
     ArrowComponent = CreateDefaultSubobject<UArrowComponent>(TEXT("ArrowComponent"));
     ArrowComponent->SetupAttachment(RootComponent);
 }
@@ -23,39 +20,46 @@ ARepresentedActorBase::ARepresentedActorBase()
 void ARepresentedActorBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 void ARepresentedActorBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
-void ARepresentedActorBase::InitializationRepresented(UItemBase* SetOwnerItem)
+// Initialization
+
+void ARepresentedActorBase::IndependentInitialization()
 {
-    if (!SetOwnerItem)
+    UItemBase* InitializationItemBase = NewObject<UItemBase>(this);
+    InitializationItemBase->Initialization(DataTableRowHandle, this);
+
+    Initialization(InitializationItemBase);
+}
+
+void ARepresentedActorBase::Initialization(UItemBase* InitializationItemBase)
+{
+    if (ItemBase)
     {
-        Destroy();
+        UE_LOG(LogTemp, Error, TEXT("Error in the file: %s, line: %d"), TEXT(__FILE__), __LINE__);
         return;
     }
-    OwnerItem = SetOwnerItem;
+
+    ItemBase = InitializationItemBase;
 }
 
-void ARepresentedActorBase::InitializationEquipment() {
-
-}
+// Interaction
 
 bool ARepresentedActorBase::PickUp(UInventory* Inventory, int32 Index)
 {
     if (!Inventory)
         return false;
-    if (!OwnerItem)
+    if (!ItemBase)
     {
         Destroy();
         return false;
     }
-    if (Inventory->AddToInventory(OwnerItem, Index))
+    if (Inventory->AddToInventory(ItemBase, Index))
     {
         Destroy();
         return true;

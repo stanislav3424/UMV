@@ -15,23 +15,49 @@ class UMV_API ARepresentedActorBase : public AActor
 
 public:
     ARepresentedActorBase();
-    virtual void Tick(float DeltaTime) override;
 
 protected:
     virtual void BeginPlay() override;
 
 public:
-    virtual void InitializationRepresented(UItemBase* SetOwnerItem);
-    virtual void InitializationEquipment();
+    virtual void Tick(float DeltaTime) override;
 
-    UItemBase* GetOwnerItem() { return OwnerItem; }
+    // Initialization
+public:
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
+    FDataTableRowHandle DataTableRowHandle;
 
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
+    bool bIndependent = false;
+
+public:
+    UFUNCTION(BlueprintCallable, Category = "Initialization")
+    void IndependentInitialization();
+
+    UFUNCTION(BlueprintCallable, Category = "Initialization")
+    void Initialization(UItemBase* InitializationItemBase);
+
+    // Interaction
+public:
     bool PickUp(UInventory* Inventory, int32 IndexInventory = INDEX_NONE);
 
+    // Owner ItemBase
 private:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "OwnerItem", meta = (AllowPrivateAccess = "true"))
-    UItemBase* OwnerItem;
+    UItemBase* ItemBase;
 
+public:
+    UItemBase* GetItemBase() { return ItemBase; }
+
+    // Data
+private:
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
+    AMainGameState* MainGameState;
+
+    FItemData ItemData;
+
+    // Components
+private:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
     UStaticMeshComponent* MeshComponent;
 

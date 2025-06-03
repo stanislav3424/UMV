@@ -16,13 +16,24 @@ void UUnitBase::Initialization(FDataTableRowHandle InitializationDataTableRowHan
 {
     DataTableRowHandle = InitializationDataTableRowHandle;
     if (!GetWorld())
+    {
+        UE_LOG(LogTemp, Error, TEXT("Error in the file: %s, line: %d"), TEXT(__FILE__), __LINE__);
         return;
+    }
     MainGameState = Cast<AMainGameState>(GetWorld()->GetGameState());
-    if (MainGameState)
+    if (!MainGameState)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Error in the file: %s, line: %d"), TEXT(__FILE__), __LINE__);
+        return;
+    }
+
         UnitData = MainGameState->GetUnitsData(DataTableRowHandle);
     if (IsValid(InitializationRepresentedUnitBase))
         RepresentedUnitBase = InitializationRepresentedUnitBase;
     CheckEquipmentVisualization();
+
+    if (MainGameState)
+        UnitName = MainGameState->GenerateUniqueName(this);
 }
 
 // Select
