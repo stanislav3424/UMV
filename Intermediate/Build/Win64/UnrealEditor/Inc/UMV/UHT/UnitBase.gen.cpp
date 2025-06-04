@@ -23,9 +23,36 @@ UMV_API UClass* Z_Construct_UClass_UUnitBase();
 UMV_API UClass* Z_Construct_UClass_UUnitBase_NoRegister();
 UMV_API UClass* Z_Construct_UClass_UWeapon_NoRegister();
 UMV_API UEnum* Z_Construct_UEnum_UMV_EEquipmentSlots();
+UMV_API UFunction* Z_Construct_UDelegateFunction_UMV_OnEquipmentChanged__DelegateSignature();
 UMV_API UScriptStruct* Z_Construct_UScriptStruct_FUnitData();
 UPackage* Z_Construct_UPackage__Script_UMV();
 // End Cross Module References
+
+// Begin Delegate FOnEquipmentChanged
+struct Z_Construct_UDelegateFunction_UMV_OnEquipmentChanged__DelegateSignature_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "UnitBase.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_UMV_OnEquipmentChanged__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_UMV, nullptr, "OnEquipmentChanged__DelegateSignature", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_UMV_OnEquipmentChanged__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_UMV_OnEquipmentChanged__DelegateSignature_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UDelegateFunction_UMV_OnEquipmentChanged__DelegateSignature()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_UMV_OnEquipmentChanged__DelegateSignature_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+void FOnEquipmentChanged_DelegateWrapper(const FMulticastScriptDelegate& OnEquipmentChanged)
+{
+	OnEquipmentChanged.ProcessMulticastDelegate<UObject>(NULL);
+}
+// End Delegate FOnEquipmentChanged
 
 // Begin Enum EEquipmentSlots
 static FEnumRegistrationInfo Z_Registration_Info_UEnum_EEquipmentSlots;

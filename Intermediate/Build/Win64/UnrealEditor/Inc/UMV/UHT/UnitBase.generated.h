@@ -16,7 +16,11 @@ enum class EEquipmentSlots : uint8;
 #endif
 #define UMV_UnitBase_generated_h
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_25_GENERATED_BODY \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_15_DELEGATE \
+UMV_API void FOnEquipmentChanged_DelegateWrapper(const FMulticastScriptDelegate& OnEquipmentChanged);
+
+
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_27_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FUnitData_Statics; \
 	UMV_API static class UScriptStruct* StaticStruct(); \
 	typedef FTableRowBase Super;
@@ -24,7 +28,7 @@ enum class EEquipmentSlots : uint8;
 
 template<> UMV_API UScriptStruct* StaticStruct<struct FUnitData>();
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_43_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_45_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execTakeOffEquipment); \
 	DECLARE_FUNCTION(execPutOnEquipment); \
 	DECLARE_FUNCTION(execEquipmentSlotAvailable); \
@@ -32,7 +36,7 @@ template<> UMV_API UScriptStruct* StaticStruct<struct FUnitData>();
 	DECLARE_FUNCTION(execSetSelect);
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_43_INCLASS_NO_PURE_DECLS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_45_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUUnitBase(); \
 	friend struct Z_Construct_UClass_UUnitBase_Statics; \
@@ -41,7 +45,7 @@ public: \
 	DECLARE_SERIALIZER(UUnitBase)
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_43_ENHANCED_CONSTRUCTORS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_45_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UUnitBase(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -55,13 +59,13 @@ public: \
 	NO_API virtual ~UUnitBase();
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_40_PROLOG
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_43_GENERATED_BODY \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_42_PROLOG
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_45_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_43_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_43_INCLASS_NO_PURE_DECLS \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_43_ENHANCED_CONSTRUCTORS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_45_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_45_INCLASS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_45_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

@@ -12,6 +12,7 @@ class AMainController;
 class UItemBase;
 class ARepresentedActorBase;
 class USceneCaptureComponent2D;
+class USpotLightComponent;
 
 UCLASS(Blueprintable)
 class UMV_API ARealtimeRenderingPipeline : public AActor
@@ -28,7 +29,7 @@ public:
     virtual void Tick(float DeltaTime) override;
 
 private:
-    void InitializeCaptureComponent();
+    void InitializeeComponents();
 
 private:
     UPROPERTY()
@@ -48,6 +49,9 @@ private:
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
     USceneCaptureComponent2D* SceneCapture;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+    USpotLightComponent* SpotLight;
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
     UMaterial* MaterialBase;

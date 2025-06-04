@@ -12,6 +12,8 @@ class UWeapon;
 class ARepresentedActorBase;
 class AMainGameState;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnEquipmentChanged);
+
 UENUM(BlueprintType)
 enum class EEquipmentSlots : uint8
 {
@@ -118,6 +120,9 @@ public:
 private:
     template <typename ItemType, ItemType* UUnitBase::* SlotMember>
     bool TakeOffEquipmentInternal(UItemBase* ItemBase);
+
+public:
+    FOnEquipmentChanged OnEquipmentChanged;
 
     // Visualization
 private:

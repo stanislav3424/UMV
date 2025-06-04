@@ -167,8 +167,6 @@ void AMainController::SelectUnit()
 
 void AMainController::SetTargetSelectUnit(UUnitBase* Unit)
 {
-    if (!Unit)
-        return;
     UISelectedUnit = Unit;
     OnTargetSelectedUnitChanged.Broadcast();
 }

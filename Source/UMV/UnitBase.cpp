@@ -102,18 +102,18 @@ bool UUnitBase::EquipmentSlotAvailable(EEquipmentSlots EquipmentSlots)
     return false;
 }
 
-bool UUnitBase::PutOnEquipment(UItemBase* ItemBase, EEquipmentSlots EquipmentSlots)
+bool UUnitBase::PutOnEquipment(UItemBase* EquipItem, EEquipmentSlots EquipmentSlots)
 {
-    if (!ItemBase)
+    if (!EquipItem)
         return false;
 
     switch (EquipmentSlots)
     {
     case EEquipmentSlots::Backpack:
-        return PutOnEquipmentInternal<UInventory, &UUnitBase::Backpack, EEquipmentSlots::Backpack>(ItemBase);
+        return PutOnEquipmentInternal<UInventory, &UUnitBase::Backpack, EEquipmentSlots::Backpack>(EquipItem);
 
     case EEquipmentSlots::Weapon:
-        return PutOnEquipmentInternal<UWeapon, &UUnitBase::Weapon, EEquipmentSlots::Weapon>(ItemBase);
+        return PutOnEquipmentInternal<UWeapon, &UUnitBase::Weapon, EEquipmentSlots::Weapon>(EquipItem);
 
     default:
         return false;
@@ -129,21 +129,25 @@ bool UUnitBase::PutOnEquipmentInternal(UItemBase* ItemBase)
     ItemType* Item = Cast<ItemType>(ItemBase);
     if (!Item)
         return false;
+    UInventory* LocalInventory = ItemBase->GetOwnerInventory();
+    if (LocalInventory)
+        LocalInventory->RemoveItem(ItemBase);
 
     this->*SlotMember = Item;
     Item->SpawnAndAttachSkeleton(this, SlotEnum);
+    OnEquipmentChanged.Broadcast();
     return true;
 }
 
-bool UUnitBase::TakeOffEquipment(UItemBase* ItemBase, EEquipmentSlots EquipmentSlots)
+bool UUnitBase::TakeOffEquipment(UItemBase* GetItem, EEquipmentSlots EquipmentSlots)
 {
     switch (EquipmentSlots)
     {
     case EEquipmentSlots::Backpack:
-        return TakeOffEquipmentInternal<UInventory, &UUnitBase::Backpack>(ItemBase);
+        return TakeOffEquipmentInternal<UInventory, &UUnitBase::Backpack>(GetItem);
 
     case EEquipmentSlots::Weapon:
-        return TakeOffEquipmentInternal<UWeapon, &UUnitBase::Weapon>(ItemBase);
+        return TakeOffEquipmentInternal<UWeapon, &UUnitBase::Weapon>(GetItem);
 
     default:
         return false;
@@ -158,6 +162,7 @@ bool UUnitBase::TakeOffEquipmentInternal(UItemBase* ItemBase)
         ItemBase = Item;
         Item->RemoveRepresentedActor();
         this->*SlotMember = nullptr;
+        OnEquipmentChanged.Broadcast();
         return true;
     }
     return false;

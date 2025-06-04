@@ -13,6 +13,6 @@ void AMainPlayerState::BeginPlay()
     if (!RealtimeRenderingPipeline)
         return;
 
-    RealtimeRenderingPipeline->SetActorHiddenInGame(true);
+    RealtimeRenderingPipeline->SetActorHiddenInGame(false);
     RealtimeRenderingPipeline->SetActorEnableCollision(false);
 }

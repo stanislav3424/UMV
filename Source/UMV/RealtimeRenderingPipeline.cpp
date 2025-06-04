@@ -2,13 +2,14 @@
 #include "ItemBase.h"
 #include "RepresentedActorBase.h"
 #include "Components/SceneCaptureComponent2D.h"
+#include "Components/SpotLightComponent.h"
 #include "MainController.h"
 
 ARealtimeRenderingPipeline::ARealtimeRenderingPipeline()
 {
     PrimaryActorTick.bCanEverTick = true;
     PrimaryActorTick.TickInterval = 0.1f;
-    InitializeCaptureComponent();
+    InitializeeComponents();
 }
 
 void ARealtimeRenderingPipeline::BeginPlay()
@@ -34,7 +35,7 @@ void ARealtimeRenderingPipeline::Tick(float DeltaTime)
     bool IsEmpty = RenderQueue.IsEmpty();
 }
 
-void ARealtimeRenderingPipeline::InitializeCaptureComponent()
+void ARealtimeRenderingPipeline::InitializeeComponents()
 {
     RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
 
@@ -45,6 +46,12 @@ void ARealtimeRenderingPipeline::InitializeCaptureComponent()
     SceneCapture->bCaptureEveryFrame = false;
     SceneCapture->bCaptureOnMovement = false;
     SceneCapture->PrimitiveRenderMode = ESceneCapturePrimitiveRenderMode::PRM_UseShowOnlyList;
+
+    SpotLight = CreateDefaultSubobject<USpotLightComponent>(TEXT("SpotLight"));
+    SpotLight->SetupAttachment(RootComponent);
+    SpotLight->LightingChannels.bChannel0 = false;
+    SpotLight->LightingChannels.bChannel1 = true;
+    SpotLight->LightingChannels.bChannel2 = false;
 }
 
 UMaterialInstanceDynamic* ARealtimeRenderingPipeline::GetMID(UItemBase* ItemBase, FIntPoint Size)
@@ -112,6 +119,14 @@ bool ARealtimeRenderingPipeline::RenderTexture()
 
     if (!RenderActor)
         return false;
+
+    for (UActorComponent* Component : RenderActor->GetComponents())
+    {
+        if (UPrimitiveComponent* PrimComp = Cast<UPrimitiveComponent>(Component))
+        {
+            PrimComp->SetLightingChannels(false, true, false);
+        }
+    }
 
     SceneCapture->ShowOnlyActors.Empty();
     SceneCapture->ShowOnlyActors.Add(RenderActor);
