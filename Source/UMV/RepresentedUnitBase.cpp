@@ -73,6 +73,7 @@ void ARepresentedUnitBase::Initialization(UUnitBase* InitializationUnitBase)
     }
 
     UnitBase = InitializationUnitBase;
+    InitializationEnd();
 }
 
 void ARepresentedUnitBase::InitializingStats()

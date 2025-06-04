@@ -30,6 +30,9 @@ struct FItemData : public FTableRowBase
     TSubclassOf<ARepresentedActorBase> ClassRepresentedActorBase;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FDataTableRowHandle ChildDataTableRowHandle;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FIntPoint Size = {0, 0};
 };
 
@@ -39,12 +42,18 @@ class UMV_API UItemBase : public UObject
     GENERATED_BODY()
 
     // Initialization
-protected:
+private:
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
     FDataTableRowHandle DataTableRowHandle;
 
+protected:
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
     ARepresentedActorBase* RepresentedActorBase;
+
+public:
+    UFUNCTION(BlueprintCallable)
+    virtual void Initialization(FDataTableRowHandle InitializationDataTableRowHandle,
+                                ARepresentedActorBase* InitializationRepresentedActorBase = nullptr);
 
     // Data
 
@@ -61,19 +70,21 @@ protected:
     UPROPERTY(EditAnywhere, BlueprintReadOnly)
     FItemData ItemData;
 
-public:
-    UFUNCTION(BlueprintCallable)
-    virtual void Initialization(FDataTableRowHandle InitializationDataTableRowHandle,
-                                ARepresentedActorBase* InitializationRepresentedActorBase = nullptr);
-    // SpawnRepresentedActorBase
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    UInventory* OwnerInventory;
 
+public:
+    void SetOwnerInventory(UInventory* NewOwnerInventory) { OwnerInventory = NewOwnerInventory; }
+    UInventory* GetOwnerInventory() { return OwnerInventory; }
+
+    // SpawnRepresentedActorBase
+public:
     ARepresentedActorBase* SpawnRepresentedActorBase(const FTransform& SpawnTransform,
                                                    const FActorSpawnParameters& SpawnParameters);
-
-    void Spawn(FTransform& Transform);
     void SpawnAndAttachSkeleton(UUnitBase* Unit, EEquipmentSlots EquipmentSlots);
     void RemoveRepresentedActor();
-    int32 GetSize() { return ItemData.Size.Y * ItemData.Size.X; }
+    FIntPoint GetSize() { return ItemData.Size; }
+    int32 GetSizeVolume() { return ItemData.Size.Y * ItemData.Size.X; }
     int32 GetWidth() { return ItemData.Size.X; }
     int32 GetHeight() { return ItemData.Size.Y; }
     TSubclassOf<ARepresentedActorBase> GetRepresentedClass() { return ItemData.ClassRepresentedActorBase; }

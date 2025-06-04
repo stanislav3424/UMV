@@ -40,6 +40,7 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Create")
     ARepresentedActorBase* SpawnItem(const FDataTableRowHandle& DataTableRowHandle, const FTransform& SpawnTransform);
+
     // DataTable
 private:
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
@@ -64,4 +65,9 @@ public:
 private:
     template <typename DataType>
     const DataType GetDataFromDataTable(const FDataTableRowHandle& DataTableRowHandle) const;
+
+    // UI
+
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
+    FLinearColor Color = FLinearColor::Black;
 };

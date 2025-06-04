@@ -46,14 +46,6 @@ ARepresentedActorBase* UItemBase::SpawnRepresentedActorBase(const FTransform& Sp
     return RepresentedActorBase;
 }
 
-void UItemBase::Spawn(FTransform& Transform)
-{
-    FActorSpawnParameters SpawnParameters;
-    SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-    RepresentedActorBase =
-        GetWorld()->SpawnActor<ARepresentedActorBase>(ItemData.ClassRepresentedActorBase, Transform, SpawnParameters);
-}
-
 void UItemBase::SpawnAndAttachSkeleton(UUnitBase* Unit, EEquipmentSlots EquipmentSlots)
 {
     ARepresentedUnitBase* RepresentedUnitBase = Unit->GetRepresentedUnitBase();

@@ -12,7 +12,7 @@ void UInventory::Initialization(FDataTableRowHandle InitializationDataTableRowHa
         return;
     }
 
-    InventoryData = MainGameState->GetInventoryData(DataTableRowHandle);
+    InventoryData = MainGameState->GetInventoryData(ItemData.ChildDataTableRowHandle);
     Inventory.SetNum(InventoryData.Size.X * InventoryData.Size.Y);
 }
 
@@ -50,16 +50,23 @@ void UInventory::AddToInventorySub(UItemBase* AddItem, int32 IndexInventory)
     if (!AddItem || !Inventory.IsValidIndex(IndexInventory))
         return;
 
+    UInventory* LocalInventory = AddItem->GetOwnerInventory();
+    if (LocalInventory)
+        LocalInventory->RemoveItem(AddItem);
+
+    AddItem->SetOwnerInventory(this);
+
     const int32 Width = AddItem->GetWidth();
     const int32 InventoryWidth = InventoryData.Size.X;
 
-    for (int32 Index = 0; Index < AddItem->GetSize(); ++Index)
+    for (int32 Index = 0; Index < AddItem->GetSizeVolume(); ++Index)
     {
         const int32 CurrentIndex = IndexInventory + (Index % Width) + (Index / Width) * InventoryWidth;
         if (!Inventory.IsValidIndex(CurrentIndex))
             break;
         Inventory[CurrentIndex] = AddItem;
     }
+    OnInventoryChanged.Broadcast();
 }
 
 bool UInventory::TryAddToInventory(UItemBase* AddItem, int32 IndexInventory)
@@ -108,6 +115,7 @@ bool UInventory::RemoveItem(UItemBase* RemoveItem)
     if (!RemoveItem)
         return false;
     SubRemoveItem(RemoveItem);
+    OnInventoryChanged.Broadcast();
     return true;
 }
 
@@ -129,7 +137,7 @@ void UInventory::SubRemoveItem(UItemBase* RemoveItem)
             Slot = nullptr;
 }
 
-UItemBase* UInventory::GetItemIndex(int32 IndexInventory)
+UItemBase* UInventory::GetItemIndex(int32 IndexInventory) const
 {
     if (Inventory.IsValidIndex(IndexInventory))
         return Inventory[IndexInventory];
@@ -137,7 +145,7 @@ UItemBase* UInventory::GetItemIndex(int32 IndexInventory)
         return nullptr;
 }
 
-int32 UInventory::PositionToInt(FIntPoint Position)
+int32 UInventory::PositionToInt(FIntPoint Position) const
 {
     if (InventoryData.Size.X <= 0 || InventoryData.Size.Y <= 0)
     {
@@ -152,7 +160,7 @@ int32 UInventory::PositionToInt(FIntPoint Position)
     return Position.Y * InventoryData.Size.X + Position.X;
 }
 
-FIntPoint UInventory::IntToPosition(int32 Index)
+FIntPoint UInventory::IntToPosition(int32 Index) const
 {
     FIntPoint Position;
 
@@ -178,7 +186,7 @@ FIntPoint UInventory::IntToPosition(int32 Index)
 
 // Data UI
 
-const TArray<FItemPositionData> UInventory::GetItemsPositionData()
+const TArray<FItemPositionData> UInventory::GetItemsPositionData() const
 {
     TArray<FItemPositionData> ItemPositionData;
     TArray<UItemBase*> ProcessedItems;
@@ -208,9 +216,39 @@ const TArray<FItemPositionData> UInventory::GetItemsPositionData()
     return ItemPositionData;
 }
 
+const int32 UInventory::GetTopLeftIndex(UItemBase* TestItem, FVector2D Vector2D) const
+{
+    if (!TestItem || !MainController)
+        return INDEX_NONE;
+
+    const float SizeCell = MainController->GetSizeCell();
+    if (SizeCell <= 0.f)
+        return INDEX_NONE;
+
+    const FIntPoint SizeTestItem = TestItem->GetSize();
+    if (SizeTestItem.X <= 0 || SizeTestItem.Y <= 0)
+        return INDEX_NONE;
+
+    const float HalfWidth = (SizeTestItem.X * SizeCell) / 2.f;
+    const float HalfHeight = (SizeTestItem.Y * SizeCell) / 2.f;
+
+    const float AdjustedX = Vector2D.X - HalfWidth + 0.5f * SizeCell;
+    const float AdjustedY = Vector2D.Y - HalfHeight + 0.5f * SizeCell;
+
+    int32 GridX = FMath::FloorToInt(AdjustedX / SizeCell);
+    int32 GridY = FMath::FloorToInt(AdjustedY / SizeCell);
+
+    if (GridX < 0 || GridY < 0 || GridX >= InventoryData.Size.X || GridY >= InventoryData.Size.Y)
+    {
+        return INDEX_NONE;
+    }
+
+    return GridY * InventoryData.Size.X + GridX;
+}
+
 // DrawLines
 
-TArray<FLine> UInventory::GetDrawLines()
+TArray<FLine> UInventory::GetDrawLines() const
 {
     TArray<FLine> Lines;
     float SizeCell = MainController->GetSizeCell();

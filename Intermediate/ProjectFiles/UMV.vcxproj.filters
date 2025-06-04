@@ -121,5 +121,6 @@
     <ClCompile Include="..\..\Source\UMV\Weapon.h">
       <Filter>Source\UMV</Filter>
     </ClCompile>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

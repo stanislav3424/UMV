@@ -94,6 +94,35 @@ DEFINE_FUNCTION(ARepresentedUnitBase::execInitialization)
 }
 // End Class ARepresentedUnitBase Function Initialization
 
+// Begin Class ARepresentedUnitBase Function InitializationEnd
+static const FName NAME_ARepresentedUnitBase_InitializationEnd = FName(TEXT("InitializationEnd"));
+void ARepresentedUnitBase::InitializationEnd()
+{
+	UFunction* Func = FindFunctionChecked(NAME_ARepresentedUnitBase_InitializationEnd);
+	ProcessEvent(Func,NULL);
+}
+struct Z_Construct_UFunction_ARepresentedUnitBase_InitializationEnd_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Initialization" },
+		{ "ModuleRelativePath", "RepresentedUnitBase.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ARepresentedUnitBase_InitializationEnd_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ARepresentedUnitBase, nullptr, "InitializationEnd", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020800, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ARepresentedUnitBase_InitializationEnd_Statics::Function_MetaDataParams), Z_Construct_UFunction_ARepresentedUnitBase_InitializationEnd_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_ARepresentedUnitBase_InitializationEnd()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ARepresentedUnitBase_InitializationEnd_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+// End Class ARepresentedUnitBase Function InitializationEnd
+
 // Begin Class ARepresentedUnitBase
 void ARepresentedUnitBase::StaticRegisterNativesARepresentedUnitBase()
 {
@@ -157,6 +186,7 @@ struct Z_Construct_UClass_ARepresentedUnitBase_Statics
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_ARepresentedUnitBase_IndependentInitialization, "IndependentInitialization" }, // 1752770523
 		{ &Z_Construct_UFunction_ARepresentedUnitBase_Initialization, "Initialization" }, // 1923722445
+		{ &Z_Construct_UFunction_ARepresentedUnitBase_InitializationEnd, "InitializationEnd" }, // 3161055861
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -221,10 +251,10 @@ ARepresentedUnitBase::~ARepresentedUnitBase() {}
 struct Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ARepresentedUnitBase, ARepresentedUnitBase::StaticClass, TEXT("ARepresentedUnitBase"), &Z_Registration_Info_UClass_ARepresentedUnitBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARepresentedUnitBase), 3175344331U) },
+		{ Z_Construct_UClass_ARepresentedUnitBase, ARepresentedUnitBase::StaticClass, TEXT("ARepresentedUnitBase"), &Z_Registration_Info_UClass_ARepresentedUnitBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARepresentedUnitBase), 1194764449U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_4060954903(TEXT("/Script/UMV"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_3097427678(TEXT("/Script/UMV"),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

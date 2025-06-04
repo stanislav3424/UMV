@@ -27,18 +27,40 @@ FName AMainGameState::GenerateUniqueName(const UObject* Object)
 
 UUnitBase* AMainGameState::CreateUnitBase(const FDataTableRowHandle& DataTableRowHandle)
 {
-    UUnitBase* UnitBase = NewObject<UUnitBase>(this);
-    if (!UnitBase)
+    FUnitData UnitData = GetUnitsData(DataTableRowHandle);
+    if (!UnitData.ClassUnitBase)
+    {
+        UE_LOG(LogTemp, Error, TEXT("ClassUnitBase is not set in DataTable!"));
         return nullptr;
+    }
+
+    UUnitBase* UnitBase = NewObject<UUnitBase>(this, UnitData.ClassUnitBase);
+    if (!UnitBase)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Failed to create UnitBase!"));
+        return nullptr;
+    }
+
     UnitBase->Initialization(DataTableRowHandle);
     return UnitBase;
 }
 
 UItemBase* AMainGameState::CreateItemBase(const FDataTableRowHandle& DataTableRowHandle)
 {
-    UItemBase* ItemBase = NewObject<UItemBase>(this);
-    if (!ItemBase)
+    FItemData ItemData = GetItemData(DataTableRowHandle);
+    if (!ItemData.ClassItemBase)
+    {
+        UE_LOG(LogTemp, Error, TEXT("ClassItemBase is not set in DataTable!"));
         return nullptr;
+    }
+
+    UItemBase* ItemBase = NewObject<UItemBase>(this, ItemData.ClassItemBase);
+    if (!ItemBase)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Failed to create ItemBase!"));
+        return nullptr;
+    }
+
     ItemBase->Initialization(DataTableRowHandle);
     return ItemBase;
 }

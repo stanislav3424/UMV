@@ -20,6 +20,7 @@ class UUnitBase;
 	DECLARE_FUNCTION(execIndependentInitialization);
 
 
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_CALLBACK_WRAPPERS
 #define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesARepresentedUnitBase(); \
@@ -46,6 +47,7 @@ public: \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
 	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_CALLBACK_WRAPPERS \
 	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_INCLASS_NO_PURE_DECLS \
 	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_RepresentedUnitBase_h_19_ENHANCED_CONSTRUCTORS \
 private: \

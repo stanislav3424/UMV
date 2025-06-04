@@ -7,6 +7,8 @@
 class AMainGameState;
 class AMainController;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInventoryChanged);
+
 USTRUCT(BlueprintType)
 struct FInventoryData : public FTableRowBase
 {
@@ -70,15 +72,20 @@ public:
     const FInventoryData GetInventoryData() const { return InventoryData; }
 
     UFUNCTION(BlueprintCallable)
-    const TArray<FItemPositionData> GetItemsPositionData();
+    const TArray<FItemPositionData> GetItemsPositionData() const;
+
+    UFUNCTION(BlueprintCallable)
+    const int32 GetTopLeftIndex(UItemBase* TestItem, FVector2D Vector2D) const;
 
     // Add / Remove Item
 public:
     UFUNCTION(BlueprintCallable)
     bool AddToInventory(UItemBase* AddItem, int32 IndexInventory = -1);
 
-private:
+    UFUNCTION(BlueprintCallable)
     bool TryAddToInventory(UItemBase* AddItem, int32 IndexInventory);
+
+private:
     void AddToInventorySub(UItemBase* AddItem, int32 IndexInventory);
     int32 FaindTryAddToInventory(UItemBase* AddItem);
 
@@ -92,17 +99,21 @@ public:
 private:
     void SubRemoveItem(UItemBase* RemoveItem);
 
+    // 
 public:
     UFUNCTION(BlueprintCallable)
-    UItemBase* GetItemIndex(int32 IndexInventory);
+    UItemBase* GetItemIndex(int32 IndexInventory) const;
 
 private:
-    int32 PositionToInt(FIntPoint Position);
+    int32 PositionToInt(FIntPoint Position) const;
+    FIntPoint IntToPosition(int32 Index) const;
 
-    FIntPoint IntToPosition(int32 Index);
+public:
+    UPROPERTY(BlueprintAssignable, Category = "Add / Remove Item")
+    FOnInventoryChanged OnInventoryChanged;
 
     // DrawLines
 public:
     UFUNCTION(BlueprintCallable)
-    TArray<FLine> GetDrawLines();
+    TArray<FLine> GetDrawLines() const;
 };

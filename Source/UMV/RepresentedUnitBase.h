@@ -44,6 +44,9 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Initialization")
     void Initialization(UUnitBase* InitializationUnitBase);
 
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Initialization")
+    void InitializationEnd();
+
 private:
     void InitializingStats();
 
