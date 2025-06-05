@@ -19,10 +19,8 @@ void ARealtimeRenderingPipeline::BeginPlay()
     MainController = Cast<AMainController>(GetWorld()->GetFirstPlayerController());
     if (MainController)
     {
-        SizeCell = MainController->GetSizeCell(); 
+ 
     }
-    else
-        Destroy();
 }
 
 void ARealtimeRenderingPipeline::Tick(float DeltaTime)
@@ -42,7 +40,6 @@ void ARealtimeRenderingPipeline::InitializeeComponents()
     SceneCapture = CreateDefaultSubobject<USceneCaptureComponent2D>(TEXT("SceneCapture"));
     SceneCapture->SetupAttachment(RootComponent);
     SceneCapture->ProjectionType = ECameraProjectionMode::Orthographic;
-    SceneCapture->OrthoWidth = SizeCell;
     SceneCapture->bCaptureEveryFrame = false;
     SceneCapture->bCaptureOnMovement = false;
     SceneCapture->PrimitiveRenderMode = ESceneCapturePrimitiveRenderMode::PRM_UseShowOnlyList;

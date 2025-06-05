@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "ItemBase.h"
+#include "ContainerInterface.h"
 #include "Inventory.generated.h"
 
 class AMainGameState;
@@ -50,7 +51,7 @@ struct FLine
 };
 
 UCLASS(Blueprintable)
-class UMV_API UInventory : public UItemBase
+class UMV_API UInventory : public UItemBase, public IContainerInterface
 {
     GENERATED_BODY()
 
@@ -78,6 +79,10 @@ public:
     const int32 GetTopLeftIndex(UItemBase* TestItem, FVector2D Vector2D) const;
 
     // Add / Remove Item
+
+    public:
+    virtual void DeleteFromOwnerContainer_Implementation(UItemBase* ItemBase) override;
+
 public:
     UFUNCTION(BlueprintCallable)
     bool AddToInventory(UItemBase* AddItem, int32 IndexInventory = -1);
@@ -98,6 +103,8 @@ public:
 
 private:
     void SubRemoveItem(UItemBase* RemoveItem);
+
+    void CheckInventoryEmpty();
 
     // 
 public:

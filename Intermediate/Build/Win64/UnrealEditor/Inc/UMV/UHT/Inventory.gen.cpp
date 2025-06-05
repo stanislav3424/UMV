@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeInventory() {}
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FIntPoint();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector2D();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FTableRowBase();
+UMV_API UClass* Z_Construct_UClass_UContainerInterface_NoRegister();
 UMV_API UClass* Z_Construct_UClass_UInventory();
 UMV_API UClass* Z_Construct_UClass_UInventory_NoRegister();
 UMV_API UClass* Z_Construct_UClass_UItemBase();
@@ -777,6 +778,7 @@ struct Z_Construct_UClass_UInventory_Statics
 		{ &Z_Construct_UFunction_UInventory_TryAddToInventory, "TryAddToInventory" }, // 1474289952
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
+	static const UECodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UInventory>::IsAbstract,
 	};
@@ -798,6 +800,9 @@ UObject* (*const Z_Construct_UClass_UInventory_Statics::DependentSingletons[])()
 	(UObject* (*)())Z_Construct_UPackage__Script_UMV,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UInventory_Statics::DependentSingletons) < 16);
+const UECodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_UInventory_Statics::InterfaceParams[] = {
+	{ Z_Construct_UClass_UContainerInterface_NoRegister, (int32)VTABLE_OFFSET(UInventory, IContainerInterface), false },  // 2828539559
+};
 const UECodeGen_Private::FClassParams Z_Construct_UClass_UInventory_Statics::ClassParams = {
 	&UInventory::StaticClass,
 	nullptr,
@@ -805,11 +810,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_UInventory_Statics::Cla
 	DependentSingletons,
 	FuncInfo,
 	Z_Construct_UClass_UInventory_Statics::PropPointers,
-	nullptr,
+	InterfaceParams,
 	UE_ARRAY_COUNT(DependentSingletons),
 	UE_ARRAY_COUNT(FuncInfo),
 	UE_ARRAY_COUNT(Z_Construct_UClass_UInventory_Statics::PropPointers),
-	0,
+	UE_ARRAY_COUNT(InterfaceParams),
 	0x009000A0u,
 	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventory_Statics::Class_MetaDataParams), Z_Construct_UClass_UInventory_Statics::Class_MetaDataParams)
 };
@@ -839,10 +844,10 @@ struct Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source
 		{ FLine::StaticStruct, Z_Construct_UScriptStruct_FLine_Statics::NewStructOps, TEXT("Line"), &Z_Registration_Info_UScriptStruct_Line, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FLine), 291439513U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UInventory, UInventory::StaticClass, TEXT("UInventory"), &Z_Registration_Info_UClass_UInventory, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventory), 4016787192U) },
+		{ Z_Construct_UClass_UInventory, UInventory::StaticClass, TEXT("UInventory"), &Z_Registration_Info_UClass_UInventory, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventory), 998534459U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_3974780370(TEXT("/Script/UMV"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_71981841(TEXT("/Script/UMV"),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_Statics::ScriptStructInfo),
 	nullptr, 0);

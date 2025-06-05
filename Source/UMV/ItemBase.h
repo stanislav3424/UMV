@@ -15,6 +15,8 @@ class AMainPlayerState;
 class ARepresentedActorBase;
 class UInventory;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDradAndDropRotated);
+
 USTRUCT(BlueprintType)
 struct FItemData : public FTableRowBase
 {
@@ -34,6 +36,9 @@ struct FItemData : public FTableRowBase
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FIntPoint Size = {0, 0};
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    bool bIsStorable = true;
 };
 
 UCLASS(Blueprintable)
@@ -61,26 +66,30 @@ protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
     FName UnitName;
 
-    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
     AMainGameState* MainGameState;
 
-    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
     AMainController* MainController;
 
-    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
     FItemData ItemData;
 
-    UPROPERTY(EditAnywhere, BlueprintReadOnly)
-    UInventory* OwnerInventory;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
+    UObject* OwnerContainer;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data", meta = (AllowPrivateAccess = "true"))
+    bool bIsStorable = true;
 
 public:
-    void SetOwnerInventory(UInventory* NewOwnerInventory) { OwnerInventory = NewOwnerInventory; }
-    UInventory* GetOwnerInventory() { return OwnerInventory; }
+    bool GetIsStorable() { return bIsStorable; }
+    void SetOwnerInventory(UObject* NewOwnerContainer);
+    UObject* GetOwnerInventory() { return OwnerContainer; }
 
     // SpawnRepresentedActorBase
 public:
     ARepresentedActorBase* SpawnRepresentedActorBase(const FTransform& SpawnTransform,
-                                                   const FActorSpawnParameters& SpawnParameters);
+                                                     const FActorSpawnParameters& SpawnParameters);
     void SpawnAndAttachSkeleton(UUnitBase* Unit, EEquipmentSlots EquipmentSlots);
     void RemoveRepresentedActor();
     FIntPoint GetSize() { return ItemData.Size; }
@@ -91,17 +100,20 @@ public:
     ARepresentedActorBase* GetRepresentedActor() { return RepresentedActorBase; }
 
 protected:
-
-
-    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
     bool bRotated = false;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+    bool bDradAndDropRotated = false;
+
 public:
-    UFUNCTION(BlueprintCallable)
     void Rotate();
+    bool IsRotated() const { return bRotated; }
 
     UFUNCTION(BlueprintCallable)
-    bool IsRotated() const { return bRotated; }
+    void DradAndDropRotated();
+
+    FOnDradAndDropRotated OnDradAndDropRotated;
 
     // MID
 public:

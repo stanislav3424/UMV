@@ -35,7 +35,8 @@ private:
     UPROPERTY()
     AMainController* MainController;
 
-    float SizeCell = 100.f;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Initialization", meta = (AllowPrivateAccess = "true"))
+    float CaptureScaleModifier = 1.1f;
 
     TMultiMap<int32, UMaterialInstanceDynamic*> WaitingMIDs;
 
@@ -65,4 +66,5 @@ private:
     int32 GetID(UItemBase* ItemBase);
     void CheckWaitingMIDs();
     FVector2D NormalizeSize(FIntPoint Size);
+
 };

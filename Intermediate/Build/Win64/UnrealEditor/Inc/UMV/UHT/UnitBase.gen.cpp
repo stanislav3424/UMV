@@ -17,6 +17,7 @@ ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FDataTableRowHandle();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FTableRowBase();
 UMV_API UClass* Z_Construct_UClass_AMainGameState_NoRegister();
 UMV_API UClass* Z_Construct_UClass_ARepresentedUnitBase_NoRegister();
+UMV_API UClass* Z_Construct_UClass_UContainerInterface_NoRegister();
 UMV_API UClass* Z_Construct_UClass_UInventory_NoRegister();
 UMV_API UClass* Z_Construct_UClass_UItemBase_NoRegister();
 UMV_API UClass* Z_Construct_UClass_UUnitBase();
@@ -543,6 +544,7 @@ struct Z_Construct_UClass_UUnitBase_Statics
 		{ &Z_Construct_UFunction_UUnitBase_TakeOffEquipment, "TakeOffEquipment" }, // 907132704
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
+	static const UECodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UUnitBase>::IsAbstract,
 	};
@@ -574,6 +576,9 @@ UObject* (*const Z_Construct_UClass_UUnitBase_Statics::DependentSingletons[])() 
 	(UObject* (*)())Z_Construct_UPackage__Script_UMV,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UUnitBase_Statics::DependentSingletons) < 16);
+const UECodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_UUnitBase_Statics::InterfaceParams[] = {
+	{ Z_Construct_UClass_UContainerInterface_NoRegister, (int32)VTABLE_OFFSET(UUnitBase, IContainerInterface), false },  // 2828539559
+};
 const UECodeGen_Private::FClassParams Z_Construct_UClass_UUnitBase_Statics::ClassParams = {
 	&UUnitBase::StaticClass,
 	nullptr,
@@ -581,11 +586,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_UUnitBase_Statics::Clas
 	DependentSingletons,
 	FuncInfo,
 	Z_Construct_UClass_UUnitBase_Statics::PropPointers,
-	nullptr,
+	InterfaceParams,
 	UE_ARRAY_COUNT(DependentSingletons),
 	UE_ARRAY_COUNT(FuncInfo),
 	UE_ARRAY_COUNT(Z_Construct_UClass_UUnitBase_Statics::PropPointers),
-	0,
+	UE_ARRAY_COUNT(InterfaceParams),
 	0x001000A0u,
 	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UUnitBase_Statics::Class_MetaDataParams), Z_Construct_UClass_UUnitBase_Statics::Class_MetaDataParams)
 };
@@ -616,10 +621,10 @@ struct Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source
 		{ FUnitData::StaticStruct, Z_Construct_UScriptStruct_FUnitData_Statics::NewStructOps, TEXT("UnitData"), &Z_Registration_Info_UScriptStruct_UnitData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FUnitData), 2941446389U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UUnitBase, UUnitBase::StaticClass, TEXT("UUnitBase"), &Z_Registration_Info_UClass_UUnitBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUnitBase), 4130570736U) },
+		{ Z_Construct_UClass_UUnitBase, UUnitBase::StaticClass, TEXT("UUnitBase"), &Z_Registration_Info_UClass_UUnitBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUnitBase), 1994488531U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_1136922957(TEXT("/Script/UMV"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_2867155133(TEXT("/Script/UMV"),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::ScriptStructInfo),
 	Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_UnitBase_h_Statics::EnumInfo));

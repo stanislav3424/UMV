@@ -18,11 +18,11 @@ struct FLine;
 #endif
 #define UMV_Inventory_generated_h
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_10_DELEGATE \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_11_DELEGATE \
 UMV_API void FOnInventoryChanged_DelegateWrapper(const FMulticastScriptDelegate& OnInventoryChanged);
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_15_GENERATED_BODY \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_16_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FInventoryData_Statics; \
 	UMV_API static class UScriptStruct* StaticStruct(); \
 	typedef FTableRowBase Super;
@@ -30,21 +30,21 @@ UMV_API void FOnInventoryChanged_DelegateWrapper(const FMulticastScriptDelegate&
 
 template<> UMV_API UScriptStruct* StaticStruct<struct FInventoryData>();
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_24_GENERATED_BODY \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_25_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FItemPositionData_Statics; \
 	UMV_API static class UScriptStruct* StaticStruct();
 
 
 template<> UMV_API UScriptStruct* StaticStruct<struct FItemPositionData>();
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_36_GENERATED_BODY \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_37_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FLine_Statics; \
 	UMV_API static class UScriptStruct* StaticStruct();
 
 
 template<> UMV_API UScriptStruct* StaticStruct<struct FLine>();
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_55_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_56_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execGetDrawLines); \
 	DECLARE_FUNCTION(execGetItemIndex); \
 	DECLARE_FUNCTION(execRemoveItemIndex); \
@@ -56,16 +56,17 @@ template<> UMV_API UScriptStruct* StaticStruct<struct FLine>();
 	DECLARE_FUNCTION(execGetInventoryData);
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_55_INCLASS_NO_PURE_DECLS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_56_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUInventory(); \
 	friend struct Z_Construct_UClass_UInventory_Statics; \
 public: \
 	DECLARE_CLASS(UInventory, UItemBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/UMV"), NO_API) \
-	DECLARE_SERIALIZER(UInventory)
+	DECLARE_SERIALIZER(UInventory) \
+	virtual UObject* _getUObject() const override { return const_cast<UInventory*>(this); }
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_55_ENHANCED_CONSTRUCTORS \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_56_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UInventory(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -79,13 +80,13 @@ public: \
 	NO_API virtual ~UInventory();
 
 
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_52_PROLOG
-#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_55_GENERATED_BODY \
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_53_PROLOG
+#define FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_56_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_55_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_55_INCLASS_NO_PURE_DECLS \
-	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_55_ENHANCED_CONSTRUCTORS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_56_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_56_INCLASS_NO_PURE_DECLS \
+	FID_Users_Stas_Documents_Unreal_Projects_UMV_Source_UMV_Inventory_h_56_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

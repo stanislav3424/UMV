@@ -40,6 +40,12 @@
     <ClCompile Include="..\..\Source\UMV\Camera.h">
       <Filter>Source\UMV</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\UMV\ContainerInterface.cpp">
+      <Filter>Source\UMV</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UMV\ContainerInterface.h">
+      <Filter>Source\UMV</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\UMV\Inventory.cpp">
       <Filter>Source\UMV</Filter>
     </ClCompile>
@@ -121,6 +127,5 @@
     <ClCompile Include="..\..\Source\UMV\Weapon.h">
       <Filter>Source\UMV</Filter>
     </ClCompile>
-    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

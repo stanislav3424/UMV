@@ -14,9 +14,17 @@ void UInventory::Initialization(FDataTableRowHandle InitializationDataTableRowHa
 
     InventoryData = MainGameState->GetInventoryData(ItemData.ChildDataTableRowHandle);
     Inventory.SetNum(InventoryData.Size.X * InventoryData.Size.Y);
+    CheckInventoryEmpty();
 }
 
 // Add / Remove Item
+
+void UInventory::DeleteFromOwnerContainer_Implementation(UItemBase* ItemBase)
+{
+    if (!ItemBase)
+        return;
+    RemoveItem(ItemBase);
+}
 
 bool UInventory::AddToInventory(UItemBase* AddItem, int32 IndexInventory)
 {
@@ -50,10 +58,6 @@ void UInventory::AddToInventorySub(UItemBase* AddItem, int32 IndexInventory)
     if (!AddItem || !Inventory.IsValidIndex(IndexInventory))
         return;
 
-    UInventory* LocalInventory = AddItem->GetOwnerInventory();
-    if (LocalInventory)
-        LocalInventory->RemoveItem(AddItem);
-
     AddItem->SetOwnerInventory(this);
 
     const int32 Width = AddItem->GetWidth();
@@ -66,12 +70,16 @@ void UInventory::AddToInventorySub(UItemBase* AddItem, int32 IndexInventory)
             break;
         Inventory[CurrentIndex] = AddItem;
     }
+    CheckInventoryEmpty();
     OnInventoryChanged.Broadcast();
 }
 
 bool UInventory::TryAddToInventory(UItemBase* AddItem, int32 IndexInventory)
 {
     if (!AddItem || !Inventory.IsValidIndex(IndexInventory))
+        return false;
+
+    if (!AddItem->GetIsStorable())
         return false;
 
     const int32 InventoryWidth = InventoryData.Size.X;
@@ -115,6 +123,7 @@ bool UInventory::RemoveItem(UItemBase* RemoveItem)
     if (!RemoveItem)
         return false;
     SubRemoveItem(RemoveItem);
+    CheckInventoryEmpty();
     OnInventoryChanged.Broadcast();
     return true;
 }
@@ -135,6 +144,15 @@ void UInventory::SubRemoveItem(UItemBase* RemoveItem)
     for (auto& Slot : Inventory)
         if (Slot == RemoveItem)
             Slot = nullptr;
+}
+
+void UInventory::CheckInventoryEmpty()
+{
+    bool Check = true;
+    for (UItemBase* ItemBase : Inventory)
+        if (ItemBase)
+            Check = false;
+    bIsStorable = Check;
 }
 
 UItemBase* UInventory::GetItemIndex(int32 IndexInventory) const

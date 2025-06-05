@@ -7,6 +7,7 @@
 #include "UObject/GeneratedCppIncludes.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeUMV_init() {}
+	UMV_API UFunction* Z_Construct_UDelegateFunction_UMV_OnDradAndDropRotated__DelegateSignature();
 	UMV_API UFunction* Z_Construct_UDelegateFunction_UMV_OnEquipmentChanged__DelegateSignature();
 	UMV_API UFunction* Z_Construct_UDelegateFunction_UMV_OnInventoryChanged__DelegateSignature();
 	UMV_API UFunction* Z_Construct_UDelegateFunction_UMV_OnSelectedUnitsChanged__DelegateSignature();
@@ -17,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeUMV_init() {}
 		if (!Z_Registration_Info_UPackage__Script_UMV.OuterSingleton)
 		{
 			static UObject* (*const SingletonFuncArray[])() = {
+				(UObject* (*)())Z_Construct_UDelegateFunction_UMV_OnDradAndDropRotated__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_UMV_OnEquipmentChanged__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_UMV_OnInventoryChanged__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_UMV_OnSelectedUnitsChanged__DelegateSignature,
@@ -27,13 +29,13 @@ void EmptyLinkFunctionForGeneratedCodeUMV_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0xB84E6FDB,
-				0x48D29EE9,
+				0xACFE8DFD,
+				0x5B7D61BD,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_UMV.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_UMV.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_UMV(Z_Construct_UPackage__Script_UMV, TEXT("/Script/UMV"), Z_Registration_Info_UPackage__Script_UMV, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xB84E6FDB, 0x48D29EE9));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_UMV(Z_Construct_UPackage__Script_UMV, TEXT("/Script/UMV"), Z_Registration_Info_UPackage__Script_UMV, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xACFE8DFD, 0x5B7D61BD));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

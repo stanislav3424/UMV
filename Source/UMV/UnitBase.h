@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "Engine/DataTable.h"
+#include "ContainerInterface.h"
 #include "UnitBase.generated.h"
 
 class ARepresentedUnitBase;
@@ -40,7 +41,7 @@ struct FUnitData : public FTableRowBase
 };
 
 UCLASS(Blueprintable)
-class UMV_API UUnitBase : public UObject
+class UMV_API UUnitBase : public UObject, public IContainerInterface
 {
     GENERATED_BODY()
 
@@ -90,6 +91,9 @@ public:
     bool IsSelect() const { return bSelect; }
 
     // Equipment
+public:
+    virtual void DeleteFromOwnerContainer_Implementation(UItemBase* ItemBase) override;
+
 private:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Equipment", meta = (AllowPrivateAccess = "true"))
     UInventory* Backpack;

@@ -30,6 +30,15 @@ void UItemBase::Initialization(FDataTableRowHandle InitializationDataTableRowHan
     ItemData = MainGameState->GetItemData(DataTableRowHandle); 
     if (IsValid(InitializationRepresentedActorBase))
         RepresentedActorBase = InitializationRepresentedActorBase;
+
+    bIsStorable = ItemData.bIsStorable;
+}
+
+void UItemBase::SetOwnerInventory(UObject* NewOwnerContainer)
+{
+    if (OwnerContainer && OwnerContainer->Implements<UContainerInterface>())
+        IContainerInterface::Execute_DeleteFromOwnerContainer(OwnerContainer, this);
+    OwnerContainer = NewOwnerContainer;
 }
 
 // SpawnRepresentedActorBase
@@ -87,6 +96,12 @@ void UItemBase::Rotate()
     int32 a = ItemData.Size.Y;
     ItemData.Size.Y = ItemData.Size.X;
     ItemData.Size.X = a;
+}
+
+void UItemBase::DradAndDropRotated()
+{
+    bDradAndDropRotated = !bDradAndDropRotated;
+    OnDradAndDropRotated.Broadcast();
 }
 
 // MID

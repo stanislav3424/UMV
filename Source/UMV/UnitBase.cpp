@@ -63,6 +63,25 @@ void UUnitBase::SetSelect(bool bNewSelect)
 
 // Equipment
 
+void UUnitBase::DeleteFromOwnerContainer_Implementation(UItemBase* ItemBase)
+{
+    if (!ItemBase)
+        return;
+
+    if (Backpack == ItemBase)
+    {
+        Backpack->RemoveRepresentedActor();
+        Backpack = nullptr;
+        OnEquipmentChanged.Broadcast();
+    }
+    else if (Weapon == ItemBase)
+    {
+        Weapon->RemoveRepresentedActor();
+        Weapon = nullptr;
+        OnEquipmentChanged.Broadcast();
+    }
+}
+
 FName UUnitBase::GetSocketName(EEquipmentSlots EquipmentSlots)
 {
     FName SocketName;
@@ -129,9 +148,8 @@ bool UUnitBase::PutOnEquipmentInternal(UItemBase* ItemBase)
     ItemType* Item = Cast<ItemType>(ItemBase);
     if (!Item)
         return false;
-    UInventory* LocalInventory = ItemBase->GetOwnerInventory();
-    if (LocalInventory)
-        LocalInventory->RemoveItem(ItemBase);
+
+    ItemBase->SetOwnerInventory(this);
 
     this->*SlotMember = Item;
     Item->SpawnAndAttachSkeleton(this, SlotEnum);
